@@ -1,0 +1,29 @@
+<%= form_for (@department_okr) , :url => { :action => @action } do |f| %>
+  <% if @department_okr.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@department_okr.errors.count, "error") %> prohibited this customer from being saved:</h2>
+
+      <ul>
+      <% @department_okr.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<table border="0px" cellspacing="0px" cellpadding="0px">
+	<tr>
+    	<td align="center" bgcolor="#F7F7F7" width="20%"><strong><%= f.label :OKR内容 %></strong></td>
+    	<td width="80%"><%= f.text_field :okr_name, size: 100 %></td>
+	</tr>
+  <tr>
+      <td align="center" bgcolor="#F7F7F7"><strong><%= f.label :OKR日期 %></strong></td>
+      <td ><%= f.select :okr_date, options_from_collection_for_select(@date_list, 'okr_date', 'okr_date') %>&nbsp;&nbsp;&nbsp;</td>
+  </tr>
+
+</table>
+<br>
+  <div class="actions">
+    <%= f.submit %>
+
+  </div>
+<% end %>

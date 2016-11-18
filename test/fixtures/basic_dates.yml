@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  okr_date: MyString
+  serial_number: 1
+
+two:
+  okr_date: MyString
+  serial_number: 1

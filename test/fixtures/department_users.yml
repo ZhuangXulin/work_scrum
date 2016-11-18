@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  demartment_id: 1
+  user_id: 1
+  user_role: 1
+
+two:
+  demartment_id: 1
+  user_id: 1
+  user_role: 1

@@ -1,0 +1,62 @@
+<div class="tabs">
+	<div id="tab-1" class="tab">
+		<article>
+			<div class="text-section">
+				<h1><p id="notice"><%= notice %></p></h1>
+			</div>
+			
+		<ul class="states" >
+			<%= form_tag '', :method => 'get' do %>
+			<p>
+				<%= select_tag "department_id", options_from_collection_for_select(@departments, 'id', 'department_name') %>&nbsp;&nbsp;&nbsp;
+				<%= submit_tag "Search", :department => nil %>
+			</p>
+			<% end %>
+		</ul>
+			<ul class="states" >
+				<h1><font color='red'></font>&nbsp;&nbsp;部门(<%= @department_name%>)雇员列表</h1>
+				<table width="100%">
+				  <thead>
+				    <tr style="text-align: center; COLOR: #0076C8; BACKGROUND-COLOR: #F4FAFF; font-weight: bold">
+						<th width='5%'>序号</th>
+						<th width='20%'>雇员姓名</th>
+				      	<th witdh='20%'>最后一次登录时间</th>
+				      	<th witdh='20%'>最后一次登录IP</th>
+				      	<th width='5%'>登录次数</th>
+				      	<th width='30%' colspan="3">操作</th>
+				    </tr>
+				  </thead>
+
+				  <tbody>
+					  <% if @users != nil %>
+				    <% @users.each_with_index do |user,i| %>
+				      <tr <%= if (i+1)%2 ==0
+				      	"style=background-Color:#F7F7F7"
+				      end%>>
+						<td align='center'><%= i+1 %></td>
+						<td align='center'><%= user.email %></td>
+				        <td align='center'><%= user.last_sign_in_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+				        <td align='center'><%= user.last_sign_in_ip %></td>
+						<td align='center'><%= user.sign_in_count %></td>
+				        <td align='center'>
+				       		
+				        </td>
+				      </tr>
+				    <% end %>
+					<% end %>
+				  </tbody>
+				</table>
+			</br>
+			
+每页显示<b><%= @users.per_page %></b>条数据,共有<b><%= @users.total_pages %></b>页,  共有<b><%= @users.total_entries %></b>条数据</br>
+<%= will_paginate @users, :container => false %>
+				<br>
+				<% if @user_role == 'admin' || @user_role == 'manager' %>
+				<%= link_to '新增雇员', '/department/new' %>
+				<% end %>
+				<br>
+			</ul>
+
+		</article>
+	</div>
+</div>

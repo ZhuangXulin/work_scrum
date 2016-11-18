@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Work Scrum</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <link media="all" rel="stylesheet" type="text/css" href="/css/all.css" />
+  	<script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="/js/jquery-1.7.2.min.js"><\/script>');</script>
+  	<script type="text/javascript" src="/js/jquery.main.js"></script>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="content">
+			<div class="c1">
+				<div class="controls">
+					<nav class="links">
+						<ul>
+							<li><a href="/departmentokr" class="ico3">部门OKR</a></li>
+						</ul>
+						<ul>
+							<li><a href="/personalokr/index" class="ico3">个人OKR</a></li>
+						</ul>
+						<ul>
+							<li><a href="/department/index" class="ico3">部门信息</a></li>
+						</ul>
+						<ul>
+							<li><a href="/topemployee/index" style="background:#99CC00 url(../images/sprite.png) no-repeat 13px -528px;">TOP员工</a></li>
+						</ul>
+						<ul>
+							<li><a href="/" class="ico1">HELP</a></li>
+						</ul>
+					</nav>
+					<div class="profile-box">
+						<span class="profile">
+							<a href="#" class="section">
+								<img class="image" src="/images/img1.png" alt="image description" width="26" height="26" />
+								<span class="text-box">
+									<strong class="name">Welcome</strong>
+									<strong><%= current_user.email %></strong>
+								</span>
+							</a>
+							<a href="#" class="opener">opener</a>
+						</span>
+						 <%= link_to('Logout', destroy_user_session_path, :method => :delete,class: 'btn-on') %>     
+					</div>
+				</div>
+				
+<%= yield %>
+
+			</div>
+		</div>
+		
+	</div>
+</body>
+</html>
