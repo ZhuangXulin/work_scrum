@@ -1,21 +1,27 @@
 class DepartmentokrController < ApplicationController
+	##需要token认证的
+  	before_filter :authenticate_user_from_token!
+  	##需要正常的cookie认证的
 	before_filter :authenticate_user!
+	##获取用户权限
 	before_action :get_user_role
 	
 	def index
 		#基础日期列表
 		@date_list = BasicDate.get_date_list
+		#获取查询的日期
 		okr_date = params[:okr_date]
 		if okr_date.nil?
 			okr_date = BasicDate.get_last_date.okr_date
 		end
 		@okr_date = okr_date
+
 		@department_okrs = Departmentokr.get_department_okrs(@department_id,okr_date,params[:page])
 		if @department_id.nil?
 			@department_name = 'ALL'
 		else
 			#部门名称
-			@department_name = Department.get_department_name(@department_id)
+			@department_name = Department.get_department_name(@department_id).department_name
 		end
 	end
 

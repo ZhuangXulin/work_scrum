@@ -19,11 +19,15 @@
 				  <thead>
 				    <tr style="text-align: center; COLOR: #0076C8; BACKGROUND-COLOR: #F4FAFF; font-weight: bold">
 						<th width='5%'>序号</th>
-						<th width='20%'>雇员姓名</th>
-				      	<th witdh='20%'>最后一次登录时间</th>
-				      	<th witdh='20%'>最后一次登录IP</th>
+						<th width='25%'>雇员姓名</th>
+						<th width='10%'>所属部门</th>
+				      	<th witdh='10%'>当前登录时间</th>
+				      	<th witdh='10%'>最后一次登录时间</th>
+				      	<th witdh='10%'>当前登录IP</th>
+				      	<th witdh='10%'>最后一次登录IP</th>
 				      	<th width='5%'>登录次数</th>
-				      	<th width='30%' colspan="3">操作</th>
+				      	<th width='5%'>账户状态</th>
+				      	<th width='10%'>操作</th>
 				    </tr>
 				  </thead>
 
@@ -35,11 +39,44 @@
 				      end%>>
 						<td align='center'><%= i+1 %></td>
 						<td align='center'><%= user.email %></td>
-				        <td align='center'><%= user.last_sign_in_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+						<td align='center'><%= user.department_name %></td>
+						<td align='center'>
+				        	<% if !user.last_sign_in_at.nil? %>
+				        		<%= user.current_sign_in_at.strftime("%Y-%m-%d %H:%M:%S") %> 
+				        	<% else %>
+				        		未登录过
+				        	<% end %>
+				        </td>
+				        <td align='center'>
+				        	<% if !user.last_sign_in_at.nil? %>
+				        		<%= user.last_sign_in_at.strftime("%Y-%m-%d %H:%M:%S") %> 
+				        	<% else %>
+				        		未登录过
+				        	<% end %>
+				        </td>
+				        <td align='center'><%= user.current_sign_in_ip %></td>
 				        <td align='center'><%= user.last_sign_in_ip %></td>
 						<td align='center'><%= user.sign_in_count %></td>
+						<td align='center'>
+							<% if user.is_active.nil? %>
+								异常
+							<% elsif user.is_active == true%>
+								<font color='green'>激活</font>
+							<% else %>
+								<font color='red'>锁定</font>
+							<% end %>
+						</td>
 				        <td align='center'>
-				       		
+				        	<% if @user_role == 'admin' || @user_role == 'manager' %>
+					       		<% if user.is_active.nil? %>
+									
+								<% elsif user.is_active == true%>
+									<%= link_to '[锁定]', "/department/active/update?user_id=#{user.id}&active_status=false",data: { confirm: 'Are you sure?' }  %>
+								<% else %>
+									<%= link_to '[激活]', "/department/unactive/update?user_id=#{user.id}&active_status=#{true}",data: { confirm: 'Are you sure?' }  %>
+								<% end %>
+									<%= link_to '[编辑]', edit_department_path(user) %>
+							<% end %>
 				        </td>
 				      </tr>
 				    <% end %>
@@ -52,6 +89,7 @@
 <%= will_paginate @users, :container => false %>
 				<br>
 				<% if @user_role == 'admin' || @user_role == 'manager' %>
+				<br /><br />
 				<%= link_to '新增雇员', '/department/new' %>
 				<% end %>
 				<br>

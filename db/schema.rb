@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161117124910) do
+ActiveRecord::Schema.define(version: 20161118093110) do
 
   create_table "basic_dates", force: :cascade do |t|
     t.string   "okr_date"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20161117124910) do
   end
 
   create_table "department_users", force: :cascade do |t|
-    t.integer  "demartment_id"
+    t.integer  "department_id"
     t.integer  "user_id"
     t.integer  "user_role"
     t.datetime "created_at",    null: false
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20161117124910) do
   end
 
   create_table "departments", force: :cascade do |t|
-    t.string   "demartment_name"
+    t.string   "department_name"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
@@ -72,8 +72,11 @@ ActiveRecord::Schema.define(version: 20161117124910) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "authentication_token"
+    t.boolean  "is_active"
   end
 
+  add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 

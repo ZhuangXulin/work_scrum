@@ -7,4 +7,9 @@ class Role < ActiveRecord::Base
             :allow_nil => true
 
   scopify
+
+  #用户权限
+  def self.add_user_role(user_id)
+  	ActiveRecord::Base.connection.execute("insert into users_roles(user_id,role_id) values('#{user_id}',3)")
+  end
 end
