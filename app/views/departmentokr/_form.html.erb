@@ -10,15 +10,38 @@
       </ul>
     </div>
   <% end %>
-<table border="0px" cellspacing="0px" cellpadding="0px">
-	<tr>
-    	<td align="center" bgcolor="#F7F7F7" width="20%"><strong><%= f.label :OKR内容 %></strong></td>
-    	<td width="80%"><%= f.text_field :okr_name, size: 100 %></td>
-	</tr>
+<table border="0px" cellspacing="5px" cellpadding="5px">
+  <tr>
+      <td align="center" bgcolor="#F7F7F7" width="20%"><strong><%= f.label :部门名称 %></strong></td>
+      <td width="80%"><%= select_tag "department_id", options_from_collection_for_select(@departments, 'id', 'department_name') %></td>
+  </tr>
   <tr>
       <td align="center" bgcolor="#F7F7F7"><strong><%= f.label :OKR日期 %></strong></td>
-      <td ><%= f.select :okr_date, options_from_collection_for_select(@date_list, 'okr_date', 'okr_date') %>&nbsp;&nbsp;&nbsp;</td>
+      <td ><%= f.select :okr_date, options_from_collection_for_select(@date_list, 'okr_date', 'okr_date') %></td>
   </tr>
+	<tr>
+    	<td align="center" bgcolor="#F7F7F7"><strong><%= f.label :OKR内容 %></strong></td>
+    	<td><%= f.text_area :okr_name,cols: 98 ,rows: 10  %></td>
+	</tr>
+  <% if @current_user_role == "admin" %>
+    <tr>
+      <td align="center" bgcolor="#F7F7F7"><strong><%= f.label :OKR占比 %></strong></td>
+      <td><%= f.select :okr_proportion, options_for_select([["10%","0.1"],["10%","0.1"],["20%","0.2"],["30%","0.3"],["40%","0.4"],["50%","0.5"],["60%","0.6"],["70%","0.7"],["80%","0.8"],["90%","0.9"],["100%","1"]]) %></td>
+    </tr>
+    <tr>
+      <td align="center" bgcolor="#F7F7F7"><strong><%= f.label :完成状态 %></strong></td>
+      <td><%= f.select :okr_stats, options_for_select([["完全没有做到","0"],["和目标差距不大","0.6"],["基本上做到","0.8"],["超出期望","1"]]) %></td>
+    </tr>
+    <tr>
+      <td align="center" bgcolor="#F7F7F7"><strong><%= f.label :得分 %></strong></td>
+      <td><%= f.text_field :okr_score, size: 100 %></td>
+    </tr>
+    <tr>
+      <td align="center" bgcolor="#F7F7F7"><strong><%= f.label :备注 %></strong></td>
+      <td><%= f.text_area :description,cols: 98 ,rows: 10 %></td>
+    </tr>
+  <% end %>
+
 
 </table>
 <br>

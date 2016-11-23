@@ -19,6 +19,12 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string   :current_sign_in_ip
       t.string   :last_sign_in_ip
 
+      #token
+      t.string   :authentication_token
+
+      #user active,用户状态，true:正常,false:锁定
+      t.boolean :is_active, null: false, default: true
+
       ## Confirmable
       # t.string   :confirmation_token
       # t.datetime :confirmed_at
@@ -36,7 +42,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
     add_index :users, :email,                unique: true
     add_index :users, :reset_password_token, unique: true
-    # add_index :users, :confirmation_token,   unique: true
+    add_index :users, :authentication_token, unique: true
     # add_index :users, :unlock_token,         unique: true
   end
 end

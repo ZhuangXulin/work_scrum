@@ -1,6 +1,6 @@
-class CreateDepartmentokrs < ActiveRecord::Migration
+class CreatePersonalokrs < ActiveRecord::Migration
   def change
-    create_table :departmentokrs do |t|
+    create_table :personalokrs do |t|
       t.string :okr_name          ,null: false    #OKR内容
       t.string :okr_date          ,null: false     #OKR月份
       t.float :okr_proportion     #OKR占比（比例）
@@ -8,8 +8,7 @@ class CreateDepartmentokrs < ActiveRecord::Migration
       t.integer :okr_degree_of_difficulty    #OKR难度系数，关联难度系数表
       t.float :okr_score        #OKR得分
       t.string :assessment_person      #评定人
-      t.integer :create_user_id   ,null: false  #部门okr创建者
-      t.integer :department_id   ,null: false  #部门ID
+      t.integer :user_id   ,null: false  #个人okr创建者
       t.datetime :assessment_time    #评定时间
       t.string :description    #备注/描述
 

@@ -1,0 +1,84 @@
+<div class="tabs">
+	<div id="tab-1" class="tab">
+		<article>
+			<div class="text-section">
+				<h1><p id="notice"><%= notice %></p></h1>
+			</div>
+			
+		<ul class="states" >
+			<%= form_tag '', :method => 'get' do %>
+			<p>
+				<%= select_tag "okr_date", options_from_collection_for_select(@date_list, 'okr_date', 'okr_date') %>&nbsp;&nbsp;&nbsp;
+				<%= select_tag "user_id", options_from_collection_for_select(@users, 'id', 'email') %>&nbsp;&nbsp;&nbsp;
+				<%= submit_tag "Search", :okr_date => nil %>
+			</p>
+			<% end %>
+		</ul>
+			<ul class="states" >
+				<h1><font color='red'><%= @okr_date %></font>&nbsp;&nbsp;OKR列表</h1>
+				<table width="100%">
+				  <thead>
+				    <tr style="text-align: center; COLOR: #0076C8; BACKGROUND-COLOR: #F4FAFF; font-weight: bold">
+						<th width='5%'>序号</th>
+						<th width="10%">姓名</th>
+						<th width='20%'>OKR描述</th>
+				      	<th witdh='10%'>创建时间</th>
+				      	<th width='10%'>更新时间</th>
+				      	<th width='5%'>占比</th>
+				      	<th width='5%'>得分</th>
+				      	<th width='10%'>评定时间</th>
+				      	<th width='10%'>评定人</th>
+				      	<th width='10%' colspan="3">操作</th>
+				    </tr>
+				  </thead>
+
+				  <tbody>
+					  <% if @personal_okrs != nil %>
+				    <% @personal_okrs.each_with_index do |personal_okr,i| %>
+				      <tr <%= if (i+1)%2 ==0
+				      	"style=background-Color:#F7F7F7"
+				      end%>>
+						<td align='center'><%= i+1 %></td>
+						<td align='center'><%= personal_okr.email %></td>
+						<td align='center'><%= personal_okr.okr_name %></td>
+				        <td align='center'><%= personal_okr.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+				        <td align='center'><%= personal_okr.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+						<td align='center'><%= personal_okr.okr_proportion %></td>
+						<td align='center'><%= personal_okr.okr_score %></td>
+						<td align='center'>
+							<% if !personal_okr.assessment_time.nil? %>
+							<%= personal_okr.assessment_time.strftime("%Y-%m-%d %H:%M:%S") %>
+							<% end %>
+						</td>
+						<td align='center'><%= personal_okr.assessment_person_email %></td>
+				        <td align='center'>
+				        	<%= link_to 'Show', personal_okr %>&nbsp;
+				        	<% if @current_user_role == 'admin' || @current_user_role == 'manager' || personal_okr.email == current_user.email %>
+				        	<%= link_to 'Edit', edit_personalokr_path(personal_okr) %>&nbsp;
+				        	<%= link_to 'Destroy', personal_okr, method: :delete, data: { confirm: 'Are you sure?' } %>
+				        	<% end %>
+				        </td>
+				      </tr>
+				    <% end %>
+					<% end %>
+				  </tbody>
+				</table>
+				<%if @total_proportion != 0 %>
+					<h3 align='center'>总得分:<font color='green'><%= @total_score %></font>,各个OKR加起来的总比例为:<font color='green'><%= @total_proportion %></font>
+						<% if @total_proportion != 1 %>
+							<font color='red'>(总占比应该为1,当前异常,请联系部门经理.))</font>
+						<% end %>
+					</h3>
+				<% end %>
+每页显示<b><%= @personal_okrs.per_page %></b>条数据,共有<b><%= @personal_okrs.total_pages %></b>页,  共有<b><%= @personal_okrs.total_entries %></b>条数据</br>
+<%= will_paginate @personal_okrs, :container => false %>
+				<br>
+				<% if @current_user_role == 'employee' %>
+				<%= link_to '新增OKR', '/personalokr/new' %>
+				<% end %>
+				<br>
+			</ul>
+
+		</article>
+	</div>
+</div>

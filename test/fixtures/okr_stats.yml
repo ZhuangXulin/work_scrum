@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  stats_name: MyString
+  stats_number: 1.5
+  serial_number: 1
+
+two:
+  stats_name: MyString
+  stats_number: 1.5
+  serial_number: 1

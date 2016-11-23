@@ -1,32 +1,32 @@
-<%= form_for (@department_user) , :url => { :action => @action } do |f| %>
-<% if @department_user.errors.any? %>
+<%= form_for (@user) , :url => { :action => @action } do |f| %>
+<% if @user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@department_user.errors.count, "error") %> prohibited this customer from being saved:</h2>
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this customer from being saved:</h2>
 
       <ul>
-      <% @department_user.errors.full_messages.each do |message| %>
+      <% @user.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-<table border="0px" cellspacing="0px" cellpadding="0px">
+<table border="0px" cellspacing="5px" cellpadding="5px">
   <tr>
       <td align="center" bgcolor="#F7F7F7" width="20%"><strong>Department Name</strong></td>
-      <% if @view_department_status == true %>
-        <td width="80%"><%= select_tag "department_id", options_from_collection_for_select(@departments, 'id', 'department_name') %></td>
-      <% else %>
-        <td width="80%"><%= @department_name %></td>
-      <% end %>
+      <td width="80%"><%= select_tag "department_id", options_from_collection_for_select(@departments, 'id', 'department_name',@user_department_id) %></td>
+  </tr>
+  <tr>
+      <td align="center" bgcolor="#F7F7F7" width="20%"><strong>User Role</strong></td>
+      <td width="80%"><%= select_tag "user_role", options_from_collection_for_select(@roles,'id','name',@user_role) %></td>
+  </tr>
+  <tr>
+      <td align="center" bgcolor="#F7F7F7" ><strong><%= f.label :id %></strong></td>
+      <td><%= f.text_field :id, autofocus: true ,size: 100 ,value: @user_id,readonly: true %></td>
   </tr>
   <tr>
       <td align="center" bgcolor="#F7F7F7" ><strong><%= f.label :email %></strong></td>
-      <% if @view_email_status == true %>
-        <td><%= f.email_field :email, autofocus: true ,size: 100 %></td>
-      <% else %>
-        <td><%= @department_user.email %></td>
-      <% end %>
+      <td><%= f.email_field :email, autofocus: true ,size: 100 %></td>
   </tr>
   <tr>
       <td align="center" bgcolor="#F7F7F7">

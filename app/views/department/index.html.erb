@@ -19,8 +19,9 @@
 				  <thead>
 				    <tr style="text-align: center; COLOR: #0076C8; BACKGROUND-COLOR: #F4FAFF; font-weight: bold">
 						<th width='5%'>序号</th>
-						<th width='25%'>雇员姓名</th>
+						<th width='20%'>雇员姓名</th>
 						<th width='10%'>所属部门</th>
+						<th width='5%'>权限</th>
 				      	<th witdh='10%'>当前登录时间</th>
 				      	<th witdh='10%'>最后一次登录时间</th>
 				      	<th witdh='10%'>当前登录IP</th>
@@ -40,6 +41,7 @@
 						<td align='center'><%= i+1 %></td>
 						<td align='center'><%= user.email %></td>
 						<td align='center'><%= user.department_name %></td>
+						<td align='center'><%= user.role_name %></td>
 						<td align='center'>
 				        	<% if !user.last_sign_in_at.nil? %>
 				        		<%= user.current_sign_in_at.strftime("%Y-%m-%d %H:%M:%S") %> 
@@ -67,7 +69,7 @@
 							<% end %>
 						</td>
 				        <td align='center'>
-				        	<% if @user_role == 'admin' || @user_role == 'manager' %>
+				        	<% if @current_user_role == 'admin' || @current_user_role == 'manager' %>
 					       		<% if user.is_active.nil? %>
 									
 								<% elsif user.is_active == true%>
@@ -75,7 +77,7 @@
 								<% else %>
 									<%= link_to '[激活]', "/department/unactive/update?user_id=#{user.id}&active_status=#{true}",data: { confirm: 'Are you sure?' }  %>
 								<% end %>
-									<%= link_to '[编辑]', edit_department_path(user) %>
+									<%= link_to '[编辑]', "department/edit/update?user_id=#{user.id}" %>
 							<% end %>
 				        </td>
 				      </tr>
@@ -88,7 +90,7 @@
 每页显示<b><%= @users.per_page %></b>条数据,共有<b><%= @users.total_pages %></b>页,  共有<b><%= @users.total_entries %></b>条数据</br>
 <%= will_paginate @users, :container => false %>
 				<br>
-				<% if @user_role == 'admin' || @user_role == 'manager' %>
+				<% if @current_user_role == 'admin' || @current_user_role == 'manager' %>
 				<br /><br />
 				<%= link_to '新增雇员', '/department/new' %>
 				<% end %>

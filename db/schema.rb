@@ -11,41 +11,73 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161118093110) do
+ActiveRecord::Schema.define(version: 20161123011831) do
 
   create_table "basic_dates", force: :cascade do |t|
-    t.string   "okr_date"
-    t.integer  "serial_number"
+    t.string   "okr_date",      null: false
+    t.integer  "serial_number", null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
   create_table "department_users", force: :cascade do |t|
-    t.integer  "department_id"
-    t.integer  "user_id"
-    t.integer  "user_role"
+    t.integer  "department_id", null: false
+    t.integer  "user_id",       null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
   create_table "departmentokrs", force: :cascade do |t|
-    t.string   "okr_name"
-    t.string   "okr_date"
+    t.string   "okr_name",                 null: false
+    t.string   "okr_date",                 null: false
     t.float    "okr_proportion"
-    t.string   "okr_stats"
-    t.integer  "okr_score"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.integer  "okr_stats"
+    t.integer  "okr_degree_of_difficulty"
+    t.float    "okr_score"
     t.string   "assessment_person"
-    t.integer  "create_user_id"
-    t.integer  "department_id"
+    t.integer  "create_user_id",           null: false
+    t.integer  "department_id",            null: false
     t.datetime "assessment_time"
+    t.string   "description"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "departments", force: :cascade do |t|
-    t.string   "department_name"
+    t.string   "department_name", null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "difficulty_degrees", force: :cascade do |t|
+    t.string   "degree_name",   null: false
+    t.float    "degree_number", null: false
+    t.integer  "serial_number", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "okr_stats", force: :cascade do |t|
+    t.string   "stats_name",    null: false
+    t.float    "stats_number",  null: false
+    t.integer  "serial_number", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "personalokrs", force: :cascade do |t|
+    t.string   "okr_name",                 null: false
+    t.string   "okr_date",                 null: false
+    t.float    "okr_proportion"
+    t.integer  "okr_stats"
+    t.integer  "okr_degree_of_difficulty"
+    t.float    "okr_score"
+    t.string   "assessment_person"
+    t.integer  "user_id",                  null: false
+    t.datetime "assessment_time"
+    t.string   "description"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "roles", force: :cascade do |t|
@@ -60,20 +92,20 @@ ActiveRecord::Schema.define(version: 20161118093110) do
   add_index "roles", ["name"], name: "index_roles_on_name"
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",   null: false
+    t.string   "encrypted_password",     default: "",   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
     t.string   "authentication_token"
-    t.boolean  "is_active"
+    t.boolean  "is_active",              default: true, null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true

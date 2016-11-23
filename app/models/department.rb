@@ -1,6 +1,4 @@
 class Department < ActiveRecord::Base
-	validates_presence_of :email,  :message => "不能够为空!"
-	validates_presence_of :password,  :message => "不能够为空!"
 
 	self.per_page = 15
 

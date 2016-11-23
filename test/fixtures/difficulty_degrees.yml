@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  degree_name: MyString
+  degree_number: 1.5
+  serial_number: 1
+
+two:
+  degree_name: MyString
+  degree_number: 1.5
+  serial_number: 1
