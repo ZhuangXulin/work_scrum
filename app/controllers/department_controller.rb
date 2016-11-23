@@ -9,7 +9,7 @@ class DepartmentController < ApplicationController
 	before_action :get_departments
 	#获取默认权限列表
 	before_action :get_roles
-	around_filter :rescue_record_not_found
+
 
 	#部门首页
 	def index
@@ -93,27 +93,42 @@ class DepartmentController < ApplicationController
 
 	#准备编辑雇员信息
 	def edit
-		@user = User.get_one_user(params[:user_id])
-		#待编辑用户所属的部门
-		@user_department_id = DepartmentUser.get_user_department_id(params[:user_id])
-		#待编辑用户权限
-		@user_role = @user.role_id
-		#待编辑用户ID
-		@user_id = @user.id
-    	@action = :update
+		user_id = params[:user_id]
+		if user_id.nil?
+			user_id = current_user.id
+			@user = User.get_one_user(user_id)
+			#待编辑用户ID
+			@user_id = @user.id
+			@update_password = true
+			@action = :update
+		else
+			@user = User.get_one_user(user_id)
+			#待编辑用户所属的部门
+			@user_department_id = DepartmentUser.get_user_department_id(user_id)
+			#待编辑用户权限
+			@user_role = @user.role_id
+			#待编辑用户ID
+			@user_id = @user.id
+	    	@action = :update
+		end
   	end
 
   	#编辑雇员信息
   	def update
 		result = false
 		ActiveRecord::Base.transaction do
-			user = User.find(params[:user][:id])
-			user.update_attributes(:password => params[:user][:password])
-			#更新人员所属部门
-			department_user = DepartmentUser.where(:user_id => params[:user][:id]).first
-			department_user.update_attributes(:department_id => params[:department_id])
-			#更新人员权限
-			ActiveRecord::Base.connection.execute("update users_roles set role_id = #{params[:user_role]} where user_id = #{params[:user][:id]}")
+			if params[:department_id].nil?
+				user = User.find(params[:user][:id])
+				user.update_attributes(:password => params[:user][:password])
+			else
+				user = User.find(params[:user][:id])
+				user.update_attributes(:password => params[:user][:password])
+				#更新人员所属部门
+				department_user = DepartmentUser.where(:user_id => params[:user][:id]).first
+				department_user.update_attributes(:department_id => params[:department_id])
+				#更新人员权限
+				ActiveRecord::Base.connection.execute("update users_roles set role_id = #{params[:user_role]} where user_id = #{params[:user][:id]}")
+			end
 			result = true
 		end
   		respond_to do |format|

@@ -59,14 +59,19 @@ img{
 <body class="b">
 <div class="lg">
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="lg_top"></div>
+    <div class="lg_top">
+        
+    </div>
+
     <div class="lg_main">
-        <div class="lg_m_1">
-      <%= f.email_field :email, autofocus: true,placeholder: 'email',class: 'ur' %>
-    <%= f.password_field :password, autocomplete: "off",placeholder: 'password',class: 'pw' %>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-        </div>
+      <div>
+        <p class="alert"><%= alert %></p>
+      </div>
+      <div class="lg_m_1">
+        <p class="alert"><%= alert %></p>
+        <%= f.email_field :email, autofocus: true,placeholder: 'email',class: 'ur' %>
+        <%= f.password_field :password, autocomplete: "off",placeholder: 'password',class: 'pw' %>
+      </div>
     </div>
     <div class="lg_foot">
     <%= f.submit "Log in",class: 'bn' %>

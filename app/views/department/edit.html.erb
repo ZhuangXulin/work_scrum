@@ -6,9 +6,15 @@
 			</div>
 			
 		<ul class="states" >
-			<h1>修改部门雇员</h1>
-				<%= render 'form'%>
-			</ul>
+			<% if !@update_password %>
+				<h1>修改部门雇员</h1>
+					<%= render 'form'%>
+				</ul>
+			<% else %>
+				<h1>修改个人密码</h1>
+					<%= render 'form'%>
+				</ul>
+			<% end %>
 			
 		</article>
 	</div>
