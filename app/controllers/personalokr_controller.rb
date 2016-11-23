@@ -5,6 +5,8 @@ class PersonalokrController < ApplicationController
 	before_filter :authenticate_user!
 	##获取用户权限
 	before_action :get_user_role
+	#获取默认权限列表
+	before_action :get_roles
 
 	def index
 		#基础日期列表
@@ -43,6 +45,7 @@ class PersonalokrController < ApplicationController
 			end
 			}
 		end
+		@total_score = @total_score.round(3)
 	end
 
 	def new

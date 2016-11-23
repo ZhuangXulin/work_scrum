@@ -7,6 +7,8 @@ class DepartmentokrController < ApplicationController
 	before_action :get_user_role
 	##获取默认的部门列表
 	before_action :get_departments
+	#获取默认权限列表
+	before_action :get_roles
 	
 	def index
 		#基础日期列表
@@ -45,6 +47,7 @@ class DepartmentokrController < ApplicationController
 			end
 			}
 		end
+		@total_score = @total_score.round(3)
 	end
 
 	def new

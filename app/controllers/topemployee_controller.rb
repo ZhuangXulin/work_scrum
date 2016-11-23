@@ -5,6 +5,8 @@ class TopemployeeController < ApplicationController
 	before_filter :authenticate_user!
 	##获取用户权限
 	before_action :get_user_role
+	#获取默认权限列表
+	before_action :get_roles
 
 	def index
 		
