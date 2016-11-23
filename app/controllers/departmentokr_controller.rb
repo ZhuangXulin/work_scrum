@@ -27,9 +27,6 @@ class DepartmentokrController < ApplicationController
 			department_id = @current_user_department_id
 		end
 		@search_department_id = department_id
-		puts 'department_id'
-		puts @search_department_id
-
 		@department_okrs = Departmentokr.get_department_okrs(department_id,okr_date,params[:page])
 		if @search_department_id == 0 || @search_department_id.nil?
 			@search_department_name = 'ALL'

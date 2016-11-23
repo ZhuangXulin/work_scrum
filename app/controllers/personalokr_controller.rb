@@ -31,19 +31,30 @@ class PersonalokrController < ApplicationController
 
 		@personal_okrs = Personalokr.get_personal_okrs(current_user.id,@current_user_role,@search_user_id,okr_date,params[:page])
 		#计算个人总分
-		@total_score = 0
+		total_personal_score = 0
+		total_department_score = 0
 		@total_proportion = 0
-		if !@personal_okrs.nil?
+		if !@personal_okrs.nil? && !@search_user_id.nil?
 			@personal_okrs.each {|personal_okr| 
 			if !personal_okr.okr_score.nil?
-				@total_score += personal_okr.okr_score
+				total_personal_score += personal_okr.okr_score
 			end
 			if !personal_okr.okr_proportion .nil?
 				@total_proportion += personal_okr.okr_proportion 
 			end
 			}
+
+			#计算用户所在的部门总分
+			department_id = Department.get_department_id_by_user(@search_user_id)
+			@department_okrs = Departmentokr.get_department_okrs(department_id,okr_date,params[:page])
+			@department_okrs.each {|department_okr|
+			if !department_okr.okr_score.nil?
+				total_department_score += department_okr.okr_score
+			end
+			}
 		end
-		@total_score = @total_score.round(3)
+
+		@total_score = (total_personal_score*0.5+total_department_score*0.5).round(3)
 	end
 
 	def new
