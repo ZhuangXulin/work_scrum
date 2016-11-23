@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   
+  around_filter :rescue_record_not_found
+  around_filter :rescue_exception
 
   def after_sign_in_path_for(resource)
 	   if resource.is_a?(User)
@@ -14,12 +16,22 @@ class ApplicationController < ActionController::Base
 	   root_path
   end
 
-  def rescue_record_not_found       
+  #捕获找不到页面异常
+  def rescue_record_not_found
     begin       
       yield       
     rescue ActiveRecord::RecordNotFound       
-      render :file => "#{RAILS_ROOT}/public/404.html"      
-    end       
+      render :file => "/public/500.html" 
+    end    
+  end
+
+  #NoMethodError
+  def rescue_exception
+    begin       
+      yield       
+    rescue Exception     
+      render :file => "/public/500.html" 
+    end    
   end
 
 

@@ -9,6 +9,7 @@ class DepartmentController < ApplicationController
 	before_action :get_departments
 	#获取默认权限列表
 	before_action :get_roles
+	around_filter :rescue_record_not_found
 
 	#部门首页
 	def index
