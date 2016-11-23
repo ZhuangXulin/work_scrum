@@ -2,7 +2,7 @@
 	<div id="tab-1" class="tab">
 		<article>
 			<div class="text-section">
-				<h1><p id="notice"><%= @notice %></p></h1>
+				<h1><p id="notice"><%= notice %></p></h1>
 			</div>
 			
 		<ul class="states" >
@@ -10,7 +10,7 @@
 			<table border="0px" cellspacing="5px" cellpadding="5px">
 			  <tr>
 			      <td align="center" bgcolor="#F7F7F7" width="20%"><strong>部门名称</strong></td>
-			      <td width="80%"><%= @department_name %></td>
+			      <td width="80%"><%= @department_okr.department_name %></td>
 			  </tr>
 			  <tr>
 			      <td align="center" bgcolor="#F7F7F7"><strong>OKR日期</strong></td>
@@ -26,7 +26,11 @@
 			    </tr>
 			    <tr>
 			      <td align="center" bgcolor="#F7F7F7"><strong>完成状态</strong></td>
-			      <td><%= @department_okr.okr_stats %></td>
+			      <td><%= @department_okr.okr_stats_name %></td>
+			    </tr>
+			    <tr>
+			      <td align="center" bgcolor="#F7F7F7"><strong>难度系数</strong></td>
+			      <td><%= @department_okr.okr_degree_of_difficulty_name %></td>
 			    </tr>
 			    <tr>
 			      <td align="center" bgcolor="#F7F7F7"><strong>OKR得分</strong></td>
@@ -34,7 +38,7 @@
 			    </tr>
 			    <tr>
 			      <td align="center" bgcolor="#F7F7F7"><strong>OKR得分评定人</strong></td>
-			      <td><%= @department_okr.assessment_person %></td>
+			      <td><%= @department_okr.assessment_person_email %></td>
 			    </tr>
 			    <tr>
 			      <td align="center" bgcolor="#F7F7F7"><strong>OKR得分评定时间</strong></td>
@@ -43,6 +47,10 @@
 			    <tr>
 			      <td align="center" bgcolor="#F7F7F7"><strong>备注</strong></td>
 			      <td><%= @department_okr.description %></td>
+			    </tr>
+			    <tr>
+			      <td align="center" bgcolor="#F7F7F7"><strong>创建用户</strong></td>
+			      <td> <%= @department_okr.create_user_email %></td>
 			    </tr>
 			    <tr>
 			      <td align="center" bgcolor="#F7F7F7"><strong>创建时间</strong></td>

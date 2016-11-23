@@ -62,7 +62,13 @@
 				  </tbody>
 				</table>
 			</br>
-			
+			<%if @total_proportion != 0 %>
+					<h3 align='center'>总得分:<font color='green'><%= @total_score %></font>,各个OKR加起来的总比例为:<font color='green'><%= @total_proportion %></font>
+						<% if @total_proportion != 1 %>
+							<font color='red'>(总占比应该为1,当前异常,请联系部门经理.))</font>
+						<% end %>
+					</h3>
+				<% end %>
 每页显示<b><%= @department_okrs.per_page %></b>条数据,共有<b><%= @department_okrs.total_pages %></b>页,  共有<b><%= @department_okrs.total_entries %></b>条数据</br>
 <%= will_paginate @department_okrs, :container => false %>
 				<br>
