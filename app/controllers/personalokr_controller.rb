@@ -16,7 +16,7 @@ class PersonalokrController < ApplicationController
 		if okr_date.nil?
 			okr_date = BasicDate.get_last_date.okr_date
 		end
-		@okr_date = okr_date
+		@search_okr_date = okr_date
 
 		#获取用户列表
 		if @current_user_role == "admin"
@@ -27,11 +27,9 @@ class PersonalokrController < ApplicationController
 			@users = User.where(:id => current_user.id)
 		end
 		#personal okr列表
-		user_id = params[:user_id]
-		if user_id.nil?
-			user_id = current_user.id
-		end
-		@personal_okrs = Personalokr.get_personal_okrs(user_id,okr_date,params[:page])
+		@search_user_id = params[:user_id]
+
+		@personal_okrs = Personalokr.get_personal_okrs(current_user.id,@current_user_role,@search_user_id,okr_date,params[:page])
 		#计算个人总分
 		@total_score = 0
 		@total_proportion = 0

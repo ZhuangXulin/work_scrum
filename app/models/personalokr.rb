@@ -1,11 +1,19 @@
 class Personalokr < ActiveRecord::Base
 	self.per_page = 15
 
-	def self.get_personal_okrs(user_id,okr_date,page)
-		if user_id.nil?
-			user_id = 0
+	def self.get_personal_okrs(operate_user_id,operate_user_role,search_user_id,okr_date,page)
+		if search_user_id.nil?
+			if operate_user_role == "admin"
+				sql = "SELECT 'personalokrs'.*,'users'.'email',(SELECT email FROM USERS where id = 'personalokrs'.assessment_person ) as assessment_person_email FROM 'personalokrs' left JOIN 'users' ON 'users'.'id' = 'personalokrs'.'user_id' WHERE 'personalokrs'.'okr_date' = '#{okr_date}' "
+			elsif operate_user_role == "manager"
+
+			else
+				sql = "SELECT 'personalokrs'.*,'users'.'email',(SELECT email FROM USERS where id = 'personalokrs'.assessment_person ) as assessment_person_email FROM 'personalokrs' left JOIN 'users' ON 'users'.'id' = 'personalokrs'.'user_id' WHERE 'personalokrs'.'okr_date' = '#{okr_date}' AND 'personalokrs'.'user_id' = #{operate_user_id} "
+			end
+		else
+			sql = "SELECT 'personalokrs'.*,'users'.'email',(SELECT email FROM USERS where id = 'personalokrs'.assessment_person ) as assessment_person_email FROM 'personalokrs' left JOIN 'users' ON 'users'.'id' = 'personalokrs'.'user_id' WHERE 'personalokrs'.'okr_date' = '#{okr_date}' AND 'personalokrs'.'user_id' = #{search_user_id} "
 		end
-		Personalokr.paginate_by_sql("SELECT 'personalokrs'.*,'users'.'email',(SELECT email FROM USERS where id = 'personalokrs'.assessment_person ) as assessment_person_email FROM 'personalokrs' left JOIN 'users' ON 'users'.'id' = 'personalokrs'.'user_id' WHERE 'personalokrs'.'okr_date' = '#{okr_date}' AND 'personalokrs'.'user_id' = #{user_id} " ,:page => page, :per_page => per_page)
+		Personalokr.paginate_by_sql(sql ,:page => page, :per_page => per_page)
 	end
 
 	#获取个人OKR的详细信息

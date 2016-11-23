@@ -18,21 +18,24 @@ class DepartmentokrController < ApplicationController
 		if okr_date.nil?
 			okr_date = BasicDate.get_last_date.okr_date
 		end
-		@okr_date = okr_date
+		@search_okr_date = okr_date
 
 		#获取查询的部门
-		if @current_user_department_id.nil?
+		if !params[:department_id].nil?
 			department_id = params[:department_id]
 		else
 			department_id = @current_user_department_id
 		end
-		
+		@search_department_id = department_id
+		puts 'department_id'
+		puts @search_department_id
+
 		@department_okrs = Departmentokr.get_department_okrs(department_id,okr_date,params[:page])
-		if @department_id.nil?
-			@department_name = 'ALL'
+		if @search_department_id == 0 || @search_department_id.nil?
+			@search_department_name = 'ALL'
 		else
 			#部门名称
-			@department_name = Department.get_department_name(@department_id).department_name
+			@search_department_name = Department.get_department_name(@search_department_id).department_name
 		end
 		#计算部门总分
 		@total_score = 0

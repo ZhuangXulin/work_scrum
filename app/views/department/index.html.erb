@@ -8,7 +8,7 @@
 		<ul class="states" >
 			<%= form_tag '', :method => 'get' do %>
 			<p>
-				<%= select_tag "department_id", options_from_collection_for_select(@departments, 'id', 'department_name') %>&nbsp;&nbsp;&nbsp;
+				<%= select_tag "department_id", options_from_collection_for_select(@departments, 'id', 'department_name',@search_department_id) %>&nbsp;&nbsp;&nbsp;
 				<%= submit_tag "Search", :department => nil %>
 			</p>
 			<% end %>

@@ -14,7 +14,8 @@ class DepartmentController < ApplicationController
 	#部门首页
 	def index
 		#验证页面是否输入了department_id参数
-		if !params[:department_id].nil?
+		@search_department_id = params[:department_id]
+		if !@search_department_id.nil?
 			#获取用户列表
 			@users = User.get_users(params[:department_id],params[:page])
 			#部门名称

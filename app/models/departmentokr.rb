@@ -12,9 +12,9 @@ class Departmentokr < ActiveRecord::Base
 	def self.get_department_okrs(department_id,okr_date,page)
 		if department_id.nil? || department_id == 0
 			#Departmentokr.joins(:Department).where(:okr_date => okr_date).paginate(:page => page, :per_page => per_page)
-			Departmentokr.paginate_by_sql("SELECT 'departmentokrs'.*,'departments'.'department_name' FROM 'departmentokrs' left JOIN 'departments' ON 'departments'.'id' = 'departmentokrs'.'department_id' WHERE 'departmentokrs'.'okr_date' = '#{okr_date}' " ,:page => page, :per_page => per_page)
+			Departmentokr.paginate_by_sql("SELECT 'departmentokrs'.*,'departments'.'department_name',(SELECT email FROM USERS where id = 'departmentokrs'.assessment_person ) as assessment_person_email FROM 'departmentokrs' left JOIN 'departments' ON 'departments'.'id' = 'departmentokrs'.'department_id' WHERE 'departmentokrs'.'okr_date' = '#{okr_date}' " ,:page => page, :per_page => per_page)
 		else
-			Departmentokr.paginate_by_sql("SELECT 'departmentokrs'.*,'departments'.'department_name' FROM 'departmentokrs' left JOIN 'departments' ON 'departments'.'id' = 'departmentokrs'.'department_id' WHERE 'departmentokrs'.'okr_date' = '#{okr_date}' AND 'departmentokrs'.'department_id' = #{department_id} " ,:page => page, :per_page => per_page)
+			Departmentokr.paginate_by_sql("SELECT 'departmentokrs'.*,'departments'.'department_name',(SELECT email FROM USERS where id = 'departmentokrs'.assessment_person ) as assessment_person_email FROM 'departmentokrs' left JOIN 'departments' ON 'departments'.'id' = 'departmentokrs'.'department_id' WHERE 'departmentokrs'.'okr_date' = '#{okr_date}' AND 'departmentokrs'.'department_id' = #{department_id} " ,:page => page, :per_page => per_page)
 		end
 	end
 

@@ -8,14 +8,14 @@
 		<ul class="states" >
 			<%= form_tag '', :method => 'get' do %>
 			<p>
-				<%= select_tag "okr_date", options_from_collection_for_select(@date_list, 'okr_date', 'okr_date') %>&nbsp;&nbsp;&nbsp;
-				<%= select_tag "user_id", options_from_collection_for_select(@users, 'id', 'email') %>&nbsp;&nbsp;&nbsp;
+				<%= select_tag "okr_date", options_from_collection_for_select(@date_list, 'okr_date', 'okr_date',@search_okr_date) %>&nbsp;&nbsp;&nbsp;
+				<%= select_tag "user_id", options_from_collection_for_select(@users, 'id', 'email',@search_user_id) %>&nbsp;&nbsp;&nbsp;
 				<%= submit_tag "Search", :okr_date => nil %>
 			</p>
 			<% end %>
 		</ul>
 			<ul class="states" >
-				<h1><font color='red'><%= @okr_date %></font>&nbsp;&nbsp;OKR列表</h1>
+				<h1><font color='red'><%= @search_okr_date %></font>&nbsp;&nbsp;OKR列表</h1>
 				<table width="100%">
 				  <thead>
 				    <tr style="text-align: center; COLOR: #0076C8; BACKGROUND-COLOR: #F4FAFF; font-weight: bold">
@@ -63,7 +63,7 @@
 					<% end %>
 				  </tbody>
 				</table>
-				<%if @total_proportion != 0 %>
+				<%if !@search_user_id.nil? && @total_proportion != 0 %>
 					<h3 align='center'>总得分:<font color='green'><%= @total_score %></font>,各个OKR加起来的总比例为:<font color='green'><%= @total_proportion %></font>
 						<% if @total_proportion != 1 %>
 							<font color='red'>(总占比应该为1,当前异常,请联系部门经理.))</font>
