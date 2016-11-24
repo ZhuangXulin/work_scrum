@@ -7,11 +7,11 @@
 			
 		<ul class="states" >
 			<% if !@update_password %>
-				<h1>修改部门雇员</h1>
+				<h1><%= t("department.update_department_employee") %></h1>
 					<%= render 'form'%>
 				</ul>
 			<% else %>
-				<h1>修改个人密码</h1>
+				<h1><%= t("department.update_person_password") %></h1>
 					<%= render 'form'%>
 				</ul>
 			<% end %>

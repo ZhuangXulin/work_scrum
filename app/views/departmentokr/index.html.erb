@@ -15,20 +15,20 @@
 			<% end %>
 		</ul>
 			<ul class="states" >
-				<h1><font color='red'><%= @search_okr_date %></font>&nbsp;&nbsp;部门(<%= @search_department_name%>)OKR列表</h1>
+				<h1><font color='red'><%= @search_okr_date %></font><%= @search_department_name%>&nbsp;<%= t("departmentokr.okr_list") %></h1>
 				<table width="100%">
 				  <thead>
 				    <tr style="text-align: center; COLOR: #0076C8; BACKGROUND-COLOR: #F4FAFF; font-weight: bold">
-						<th width='3%'>序号</th>
-						<th width="7%">部门</th>
-						<th width='20%'>OKR描述</th>
-				      	<th witdh='10%'>创建时间</th>
-				      	<th width='10%'>更新时间</th>
-				      	<th width='5%'>占比</th>
-				      	<th width='5%'>得分</th>
-				      	<th width='10%'>评定时间</th>
-				      	<th width='10%'>评定人</th>
-				      	<th width='15%' colspan="3">操作</th>
+						<th width='3%'><%= t("departmentokr.list_menu.serial_number") %></th>
+						<th width="7%"><%= t("departmentokr.list_menu.department_name") %></th>
+						<th width='20%'><%= t("departmentokr.list_menu.okr_description") %></th>
+				      	<th witdh='10%'><%= t("departmentokr.list_menu.create_time") %></th>
+				      	<th width='10%'><%= t("departmentokr.list_menu.update_time") %></th>
+				      	<th width='5%'><%= t("departmentokr.list_menu.proportion") %></th>
+				      	<th width='5%'><%= t("departmentokr.list_menu.score") %></th>
+				      	<th width='10%'><%= t("departmentokr.list_menu.assessment_time") %></th>
+				      	<th width='10%'><%= t("departmentokr.list_menu.assessment_person") %></th>
+				      	<th width='15%' colspan="3"><%= t("departmentokr.list_menu.operate") %></th>
 				    </tr>
 				  </thead>
 
@@ -52,10 +52,10 @@
 						</td>
 						<td align='center'><%= department_okr.assessment_person_email %></td>
 				        <td align='center'>
-				        	<%= link_to 'Show', department_okr %>&nbsp;
+				        	<%= link_to t("departmentokr.button.show"), department_okr %>&nbsp;
 				        	<% if @current_user_role == 'admin' || @current_user_role == 'manager' %>
-				        	<%= link_to 'Edit', edit_departmentokr_path(department_okr) %>&nbsp;
-				        	<%= link_to 'Destroy', department_okr, method: :delete, data: { confirm: 'Are you sure?' } %>
+				        	<%= link_to t("departmentokr.button.edit"), edit_departmentokr_path(department_okr) %>&nbsp;
+				        	<%= link_to t("departmentokr.button.destroy"), department_okr, method: :delete, data: { confirm: 'Are you sure?' } %>
 				        	<% end %>
 				        </td>
 				      </tr>
@@ -65,14 +65,14 @@
 				</table>
 			</br>
 			<%if @search_department_name != "ALL" && @total_proportion != 0 %>
-					<h3 align='center'>总得分:<font color='green'><%= @total_score %></font>,各个OKR加起来的总比例为:<font color='green'><%= @total_proportion %></font>
+					<h3 align='center'><%= t("departmentokr.view_info.total_socre_html",total_score:@total_score,total_proportion:@total_proportion) %>
 						<% if @total_proportion != 1 %>
-							<font color='red'>(总占比应该为1,当前异常,请联系管理员.)</font>
+							<font color='red'><%= t("departmentokr.view_info.proportion_error") %></font>
 						<% end %>
 					</h3>
 				<% end %>
-每页显示<b><%= @department_okrs.per_page %></b>条数据,共有<b><%= @department_okrs.total_pages %></b>页,  共有<b><%= @department_okrs.total_entries %></b>条数据</br>
-<%= will_paginate @department_okrs, :container => false %>
+				<%= t("will_paginate_html",per_page:@department_okrs.per_page,total_pages:@department_okrs.total_pages,total_entries:@department_okrs.total_entries) %> </br>
+				<%= will_paginate @department_okrs, :container => false %>
 				<br>
 				<% if @current_user_role == 'manager' %>
 				<%= link_to '新增OKR', '/departmentokr/new' %>

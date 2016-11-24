@@ -6,59 +6,59 @@
 			</div>
 			
 		<ul class="states" >
-			<h1>OKR详细信息</h1>
+			<h1><%= t("personalokr.okr_detail_menu.okr_detail") %></h1>
 			<table border="0px" cellspacing="5px" cellpadding="5px">
 			  <tr>
-			      <td align="center" bgcolor="#F7F7F7" width="20%"><strong>用户</strong></td>
+			      <td align="center" bgcolor="#F7F7F7" width="20%"><strong><%= t("personalokr.okr_detail_menu.personal_name") %></strong></td>
 			      <td width="80%"><%= @personal_okr.user_email %></td>
 			  </tr>
 			  <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong>OKR日期</strong></td>
+			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("personalokr.okr_detail_menu.okr_time") %></strong></td>
 			      <td ><%= @personal_okr.okr_date %></td>
 			  </tr>
 				<tr>
-			    	<td align="center" bgcolor="#F7F7F7"><strong>OKR内容</strong></td>
+			    	<td align="center" bgcolor="#F7F7F7"><strong><%= t("personalokr.okr_detail_menu.okr_description") %></strong></td>
 			    	<td><%= @personal_okr.okr_name %></td>
 				</tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong>OKR占比</strong></td>
+			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("personalokr.okr_detail_menu.okr_proportion") %></strong></td>
 			      <td><%= @personal_okr.okr_proportion %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong>完成状态</strong></td>
+			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("personalokr.okr_detail_menu.okr_status") %></strong></td>
 			      <td><%= @personal_okr.okr_stats_name %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong>难度系数</strong></td>
+			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("personalokr.okr_detail_menu.okr_degree_of_difficulty") %></strong></td>
 			      <td><%= @personal_okr.okr_degree_of_difficulty_name %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong>OKR得分</strong></td>
+			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("personalokr.okr_detail_menu.okr_score") %></strong></td>
 			      <td><%= @personal_okr.okr_score %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong>OKR得分评定人</strong></td>
+			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("personalokr.okr_detail_menu.assessment_person") %></strong></td>
 			      <td><%= @personal_okr.assessment_person_email %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong>OKR得分评定时间</strong></td>
+			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("personalokr.okr_detail_menu.assessment_time") %></strong></td>
 			      <td><%= @personal_okr.assessment_time %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong>备注</strong></td>
+			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("personalokr.okr_detail_menu.description") %></strong></td>
 			      <td><%= @personal_okr.description %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong>创建时间</strong></td>
+			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("personalokr.okr_detail_menu.create_time") %></strong></td>
 			      <td> <%= @personal_okr.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong>更新时间</strong></td>
+			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("personalokr.okr_detail_menu.update_time") %></strong></td>
 			      <td><%= @personal_okr.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
 			    </tr>
 			</table>
-				<%= link_to 'Edit', edit_personalokr_path(@personal_okr) %> |
-				<%= link_to 'Back', '/personalokr' %>
+				<%= link_to t("personalokr.button.edit"), edit_personalokr_path(@personal_okr) %> |
+				<%= link_to t("personalokr.button.back"), '/personalokr' %>
 		</ul>
 		</article>
 	</div>

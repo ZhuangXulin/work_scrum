@@ -1,0 +1,143 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+zh-CN:
+  menu:
+    department_okr: "部门OKR"
+    personal_okr: "个人OKR"
+    department: "部门"
+    top_employee: "TOP员工"
+    help: "帮助"
+  will_paginate_html: "每页显示<b>%{per_page}</b>条数据,共有<b>%{total_pages}</b>页,  共有<b>%{total_entries}</b>条数据</br>"
+  department:
+    display_range: "全部部门"
+    employee_list: "雇员列表"
+    update_department_employee: "更新部门雇员"
+    create_department_employee: "新增部门雇员"
+    update_person_password: "修改用户密码"
+    list_menu:
+      serial_number: "序号"
+      employee_name: "雇员姓名"
+      department_name: "部门"
+      user_role: "权限"
+      current_login_time: "当前登录时间"
+      last_login_time: "最后一次登录时间"
+      current_login_ip: "当前登录IP"
+      last_login_ip: "最后一次登陆IP"
+      login_count: "登陆次数"
+      account_status: "账户状态"
+      operate: "操作"
+    department_detail_menu:
+      department_name: "部门"
+      user_role: "用户权限"
+      user_id: "用户ID"
+      email: "邮箱"
+      password: "密码"
+      password_confirmation: "密码确认"
+    view_info:
+      locking: "锁定"
+      active: "激活"
+      not_logged_in: "未登录过"
+      error: "异常"
+    button:
+      locking: "锁定"
+      active: "激活"
+      edit: "编辑"
+      add_new_employee: "新增雇员"
+  departmentokr:
+    display_range: "全部部门"
+    okr_list: "OKR列表"
+    update_department_okr: "更新部门OKR内容"
+    create_department_okr: "创建部门OKR内容"
+    list_menu:
+      serial_number: "序号"
+      department_name: "部门"
+      okr_description: "OKR描述"
+      create_time: "创建时间"
+      update_time: "更新时间"
+      proportion: "占比"
+      score: "得分"
+      assessment_time: "评定时间"
+      assessment_person: "评定人"
+      operate: "操作"
+    okr_detail_menu:
+      okr_detail: "OKR 详细信息"
+      department_name: "部门"
+      okr_time: "OKR时间"
+      okr_description: "OKR内容"
+      okr_proportion: "占比"
+      okr_status: "完成状态"
+      okr_degree_of_difficulty: "难度系数"
+      okr_score: "OKR得分(系统自动生成)"
+      assessment_person: "评定人"
+      assessment_time: "评定时间"
+      description: "备注"
+      create_user: "OKR创建用户"
+      create_time: "创建时间"
+      update_time: "更新时间"
+    view_info:
+      total_socre_html: "总得分:<font color='green'>%{total_score}</font>,各个OKR加起来的总比例为:<font color='green'>%{total_proportion}</font>"
+      proportion_error: "(总占比应该为1,当前异常,请联系管理员或者部门经理)"
+    button:
+      show: "显示"
+      create: "创建"
+      edit: "更新"
+      destroy: "删除"
+      back: "返回"
+  personalokr:
+    okr_list: "OKR列表"
+    update_personal_okr: "更新用户OKR内容"
+    create_personal_okr: "创建用户OKR内容"
+    list_menu:
+      serial_number: "序号"
+      personal_name: "姓名"
+      okr_description: "OKR描述"
+      create_time: "创建时间"
+      update_time: "更新时间"
+      proportion: "占比"
+      score: "得分"
+      assessment_time: "评定时间"
+      assessment_person: "评定人"
+      operate: "操作"
+    okr_detail_menu:
+      okr_detail: "OKR 详细信息"
+      personal_name: "姓名"
+      okr_time: "OKR时间"
+      okr_description: "OKR内容"
+      okr_proportion: "占比"
+      okr_status: "完成状态"
+      okr_degree_of_difficulty: "难度系数"
+      okr_score: "OKR得分(系统自动生成)"
+      assessment_person: "评定人"
+      assessment_time: "评定时间"
+      description: "备注"
+      create_user: "OKR创建用户"
+      create_time: "创建时间"
+      update_time: "更新时间"
+    view_info:
+      total_socre_html: "总得分:<font color='green'>%{total_score}</font>,各个OKR加起来的总比例为:<font color='green'>%{total_proportion}</font>"
+      proportion_error: "(总占比应该为1,当前异常,请联系管理员或者部门经理)"
+    button:
+      show: "显示"
+      create: "创建"
+      edit: "更新"
+      destroy: "删除"
+      back: "返回"

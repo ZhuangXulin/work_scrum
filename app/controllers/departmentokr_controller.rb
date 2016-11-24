@@ -29,7 +29,7 @@ class DepartmentokrController < ApplicationController
 		@search_department_id = department_id
 		@department_okrs = Departmentokr.get_department_okrs(department_id,okr_date,params[:page])
 		if @search_department_id == 0 || @search_department_id.nil?
-			@search_department_name = 'ALL'
+			@search_department_name = t('departmentokr.display_range')
 		else
 			#部门名称
 			@search_department_name = Department.get_department_name(@search_department_id).department_name

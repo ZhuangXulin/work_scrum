@@ -16,31 +16,39 @@
 				<div class="controls">
 					<nav class="links">
 						<ul>
-							<li><a href="/departmentokr" style="background:#99CC00 url(/images/sprite.png) no-repeat 13px -528px;">部门OKR</a></li>
+							<li><a href="/departmentokr" style="background:#99CC00 url(/images/sprite.png) no-repeat 13px -528px;"><%= t("menu.department_okr") %></a></li>
 						</ul>
 						<ul>
-							<li><a href="/personalokr" class="ico3">个人OKR</a></li>
+							<li><a href="/personalokr" class="ico3"><%= t("menu.personal_okr") %></a></li>
 						</ul>
 						<ul>
-							<li><a href="/department" class="ico3">部门信息</a></li>
+							<li><a href="/department" class="ico3"><%= t("menu.department") %></a></li>
 						</ul>
 						<ul>
-							<li><a href="/topemployee" class="ico3">TOP员工</a></li>
+							<li><a href="/topemployee" class="ico3"><%= t("menu.top_employee") %></a></li>
 						</ul>
 						<ul>
-							<li><a href="/" class="ico1">HELP</a></li>
+							<li><a href="/" class="ico1"><%= t("menu.help") %></a></li>
 						</ul>
 					</nav>
 					<div class="profile-box">
 						<span class="profile">
-							<a href="/department/edit/update" class="section">
+							<% if @locale.nil? || @locale == "en" %>
+								<a href="welcome?locale=zh-CN" class="section">
+							<% else %>
+								<a href="welcome?locale=en" class="section">
+							<% end %>
 								<img class="image" src="/images/img1.png" alt="image description" width="26" height="26" />
 								<span class="text-box">
-									<strong class="name">Welcome</strong>
+									<% if @locale.nil? || @locale == "en" %>
+										<strong class="name">Welcome,设置中文语言</strong>
+									<% else %>
+										<strong class="name">Welcome,Change To English</strong>
+									<% end %>
 									<strong><%= current_user.email %></strong>
 								</span>
 							</a>
-							<a href="#" class="opener">opener</a>
+							<a href="/department/edit/update" class="opener">opener</a>
 						</span>
 						 <%= link_to('Logout', destroy_user_session_path, :method => :delete,class: 'btn-on') %>     
 					</div>

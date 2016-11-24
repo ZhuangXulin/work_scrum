@@ -24,7 +24,7 @@ class DepartmentController < ApplicationController
 			#获取用户列表
 			@users = User.get_users(@current_user_department_id,params[:page])
 			#部门名称
-			@department_name = 'ALL'
+			@department_name = t('department.display_range')
 		end
 	end
 

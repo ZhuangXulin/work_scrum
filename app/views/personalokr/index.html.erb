@@ -15,20 +15,20 @@
 			<% end %>
 		</ul>
 			<ul class="states" >
-				<h1><font color='red'><%= @search_okr_date %></font>&nbsp;&nbsp;OKR列表</h1>
+				<h1><font color='red'><%= @search_okr_date %></font>&nbsp;<%= t("personalokr.okr_list") %></h1>
 				<table width="100%">
 				  <thead>
 				    <tr style="text-align: center; COLOR: #0076C8; BACKGROUND-COLOR: #F4FAFF; font-weight: bold">
-						<th width='5%'>序号</th>
-						<th width="10%">姓名</th>
-						<th width='20%'>OKR描述</th>
-				      	<th witdh='10%'>创建时间</th>
-				      	<th width='10%'>更新时间</th>
-				      	<th width='5%'>占比</th>
-				      	<th width='5%'>得分</th>
-				      	<th width='10%'>评定时间</th>
-				      	<th width='10%'>评定人</th>
-				      	<th width='10%' colspan="3">操作</th>
+						<th width='5%'><%= t("personalokr.list_menu.serial_number") %></th>
+						<th width="10%"><%= t("personalokr.list_menu.personal_name") %></th>
+						<th width='20%'><%= t("personalokr.list_menu.okr_description") %></th>
+				      	<th witdh='10%'><%= t("personalokr.list_menu.create_time") %></th>
+				      	<th width='10%'><%= t("personalokr.list_menu.update_time") %></th>
+				      	<th width='5%'><%= t("personalokr.list_menu.proportion") %></th>
+				      	<th width='5%'><%= t("personalokr.list_menu.score") %></th>
+				      	<th width='10%'><%= t("personalokr.list_menu.assessment_time") %></th>
+				      	<th width='10%'><%= t("personalokr.list_menu.assessment_person") %></th>
+				      	<th width='10%' colspan="3"><%= t("personalokr.list_menu.operate") %></th>
 				    </tr>
 				  </thead>
 
@@ -64,14 +64,14 @@
 				  </tbody>
 				</table>
 				<%if !@search_user_id.nil? && @total_proportion != 0 %>
-					<h3 align='center'>总得分:<font color='green'><%= @total_score %></font>,各个OKR加起来的总比例为:<font color='green'><%= @total_proportion %></font>
+					<h3 align='center'><%= t("personalokr.view_info.total_socre_html",total_score:@total_score,total_proportion:@total_proportion) %>
 						<% if @total_proportion != 1 %>
-							<font color='red'>(总占比应该为1,当前异常,请联系部门经理.))</font>
+							<font color='red'><%= t("personalokr.view_info.proportion_error") %></font>
 						<% end %>
 					</h3>
 				<% end %>
-每页显示<b><%= @personal_okrs.per_page %></b>条数据,共有<b><%= @personal_okrs.total_pages %></b>页,  共有<b><%= @personal_okrs.total_entries %></b>条数据</br>
-<%= will_paginate @personal_okrs, :container => false %>
+				<%= t("will_paginate_html",per_page:@personal_okrs.per_page,total_pages:@personal_okrs.total_pages,total_entries:@personal_okrs.total_entries) %> </br>
+				<%= will_paginate @personal_okrs, :container => false %>
 				<br>
 				<% if @current_user_role == 'employee' %>
 				<%= link_to '新增OKR', '/personalokr/new' %>
