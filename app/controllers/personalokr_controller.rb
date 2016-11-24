@@ -104,7 +104,7 @@ class PersonalokrController < ApplicationController
 		#日期列表
 		@date_list = BasicDate.get_date_list
 		#部门用户列表
-		@department_users = User.get_department_users_with_user_role(current_user.id,@current_user_role,@current_user_department_id)
+		@department_users = User.where(:id => @personal_okr.user_id)
 		#完成状态列表
 		@okr_stats = OkrStat.get_okr_data_list
 		#难度系数列表
