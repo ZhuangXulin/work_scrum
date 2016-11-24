@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
   end
 
   #获取某一个部门的用户列表（不包括部门的管理员）
-  def self.get_department_users_without_manager
+  def self.get_department_users_without_manager(department_id)
     sql = "select 'users'.* from 'users','department_users','users_roles' where 'users'.'id' = 'department_users'.'user_id' and 'users_roles'.'user_id'='users'.'id' and 'users_roles'.'role_id' not in (1,2) and 'department_users'.'department_id' = '#{department_id}'"
     User.find_by_sql(sql)
   end

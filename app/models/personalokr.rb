@@ -6,7 +6,11 @@ class Personalokr < ActiveRecord::Base
 			if operate_user_role == "admin"
 				sql = "SELECT 'personalokrs'.*,'users'.'email',(SELECT email FROM USERS where id = 'personalokrs'.assessment_person ) as assessment_person_email FROM 'personalokrs' left JOIN 'users' ON 'users'.'id' = 'personalokrs'.'user_id' WHERE 'personalokrs'.'okr_date' = '#{okr_date}' "
 			elsif operate_user_role == "manager"
-
+				sql = "SELECT 'personalokrs'.*,'users'.'email',(SELECT email FROM USERS where id = 'personalokrs'.assessment_person ) as assessment_person_email FROM 'personalokrs' left JOIN 'users' ON 'users'.'id' = 'personalokrs'.'user_id' 
+						WHERE 'users'.'id' in (
+						select 'department_users'.'user_id' from 'department_users' where 'department_users'.'department_id' in (
+						select 'department_users'.'department_id' from 'department_users' where 'department_users'.'user_id' ='#{operate_user_id}'))
+						and 'personalokrs'.'okr_date' = '#{okr_date}'"
 			else
 				sql = "SELECT 'personalokrs'.*,'users'.'email',(SELECT email FROM USERS where id = 'personalokrs'.assessment_person ) as assessment_person_email FROM 'personalokrs' left JOIN 'users' ON 'users'.'id' = 'personalokrs'.'user_id' WHERE 'personalokrs'.'okr_date' = '#{okr_date}' AND 'personalokrs'.'user_id' = #{operate_user_id} "
 			end
