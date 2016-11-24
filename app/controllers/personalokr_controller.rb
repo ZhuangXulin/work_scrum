@@ -20,9 +20,9 @@ class PersonalokrController < ApplicationController
 
 		#获取用户列表
 		if @current_user_role == "admin"
-			@users = User.get_all_users
+			@users = User.get_all_users_without_admin_and_manager
 		elsif @current_user_role == "manager"
-			@users = User.get_department_users(@current_user_department_id)
+			@users = User.get_department_users_without_manager(@current_user_department_id)
 		else
 			@users = User.where(:id => current_user.id)
 		end
