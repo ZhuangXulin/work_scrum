@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>work_scrum</title>
+  <link rel="stylesheet" href="css/all.css">
+</head>
+<body>
+<!--top-->
+  <div id="header" class="clearfix">
+      <img src="images/logo.png" alt="logo" class="y-logo">
+    <div class="profile-box">
+        <span class="profile">
+            <a href="/department/edit/update" class="section">
+              <img class="image" src="images/img1.png" alt="image description" height="26" width="26">
+                <span class="text-box">
+                    <strong class="name">Welcome</strong>
+                    <strong>zhuangxulin@ancun.com</strong>
+                </span>
+            </a>
+            <a href="#" class="opener">opener</a>
+        </span>
+      <a class="btn-on" rel="nofollow" data-method="delete" href="/users/sign_out">退出</a>
+    </div>
+  </div>
+
+<!--left-->
+<div id="left">
+  <ul class="left-nav">
+
+    <li>
+      <a href="javascript:;" class="current"><em class="y-departmentdept"></em>部门OKR</a>
+    </li>
+    <li>
+      <a href="javascript:;"><em class="y-personal"></em>个人OKR</a>
+    </li>
+    <li>
+      <a href="javascript:;"><em class="y-personal"></em>部门信息</a>
+    </li>
+    <li>
+      <a href="javascript:;"><em class="y-personal"></em>TOP员工</a>
+    </li>
+    <li>
+      <a href="javascript:;"><em class="y-help"></em>HELP</a>
+    </li>
+  </ul>
+</div>
+<!--subnav-->
+
+<div id="container">
+  <div class="tabs">
+    <div id="tab-1" class="tab">
+      <article>
+        <!--<div class="text-section">-->
+          <!--<h1><p id="notice"></p></h1>-->
+        <!--</div>-->
+
+        <ul class="states">
+          <form action="" accept-charset="UTF-8" method="get"><input name="utf8" value="✓" type="hidden">
+            <p>
+              <select name="okr_date" id="okr_date"><option selected="selected" value="2016-12">2016-12</option>
+                <option value="2016-11">2016-11</option></select>&nbsp;&nbsp;&nbsp;
+              <select name="department_id" id="department_id"><option value="1">产品部</option>
+                <option value="2">UED部</option>
+                <option value="3">测试部</option>
+                <option value="4">运维部</option>
+                <option value="5">基础平台部</option>
+                <option value="6">语音部</option>
+                <option value="7">金融技术部</option>
+                <option value="8">项目部</option></select>&nbsp;&nbsp;&nbsp;
+              <input name="commit" value="Search" type="submit">
+            </p>
+          </form>		</ul>
+        <ul class="states">
+          <h1><font color="red">2016-12</font>&nbsp;&nbsp;部门(ALL)OKR列表</h1>
+          <table width="100%" cellspacing="0" cellpadding="0">
+            <thead>
+            <tr style="">
+              <th>序号</th>
+              <th>部门</th>
+              <th>OKR描述</th>
+              <th>创建时间</th>
+              <th>更新时间</th>
+              <th>占比</th>
+              <th>得分</th>
+              <th>评定时间</th>
+              <th>评定人</th>
+              <th colspan="3">操作</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+              <td align="center">1</td>
+              <td align="center">测试部</td>
+              <td align="center">12月份okr测试2</td>
+              <td align="center">2016-11-23 17:49:04</td>
+              <td align="center">2016-11-23 18:45:49</td>
+              <td align="center">0.5</td>
+              <td align="center">0.12</td>
+              <td align="center">
+                2016-11-23 18:45:49
+              </td>
+              <td align="center">zhuangxulin@ancun.com</td>
+              <td align="center">
+                <a href="/departmentokr/2">Show</a>&nbsp;
+                <a href="/departmentokr/2/edit">Edit</a>&nbsp;
+                <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/departmentokr/2">Destroy</a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <br>
+          每页显示<b>15</b>条数据,共有<b>1</b>页,  共有<b>1</b>条数据<br>
+
+          <br>
+          <br>
+        </ul>
+
+      </article>
+    </div>
+    </div>
+</div>
+
+</body>
+<script src="js/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+</html>

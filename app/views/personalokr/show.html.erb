@@ -7,53 +7,53 @@
 			
 		<ul class="states" >
 			<h1>OKR详细信息</h1>
-			<table border="0px" cellspacing="5px" cellpadding="5px">
+			<table border="0px" cellspacing="0" cellpadding="0">
 			  <tr>
-			      <td align="center" bgcolor="#F7F7F7" width="20%"><strong>用户</strong></td>
-			      <td width="80%"><%= @personal_okr.user_email %></td>
+			      <td><strong>用户</strong></td>
+			      <td><%= @personal_okr.user_email %></td>
 			  </tr>
 			  <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong>OKR日期</strong></td>
+			      <td><strong>OKR日期</strong></td>
 			      <td ><%= @personal_okr.okr_date %></td>
 			  </tr>
 				<tr>
-			    	<td align="center" bgcolor="#F7F7F7"><strong>OKR内容</strong></td>
+			    	<td><strong>OKR内容</strong></td>
 			    	<td><%= @personal_okr.okr_name %></td>
 				</tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong>OKR占比</strong></td>
+			      <td><strong>OKR占比</strong></td>
 			      <td><%= @personal_okr.okr_proportion %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong>完成状态</strong></td>
+			      <td><strong>完成状态</strong></td>
 			      <td><%= @personal_okr.okr_stats_name %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong>难度系数</strong></td>
+			      <td><strong>难度系数</strong></td>
 			      <td><%= @personal_okr.okr_degree_of_difficulty_name %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong>OKR得分</strong></td>
+			      <td><strong>OKR得分</strong></td>
 			      <td><%= @personal_okr.okr_score %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong>OKR得分评定人</strong></td>
+			      <td><strong>OKR得分评定人</strong></td>
 			      <td><%= @personal_okr.assessment_person_email %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong>OKR得分评定时间</strong></td>
+			      <td><strong>OKR得分评定时间</strong></td>
 			      <td><%= @personal_okr.assessment_time %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong>备注</strong></td>
+			      <td><strong>备注</strong></td>
 			      <td><%= @personal_okr.description %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong>创建时间</strong></td>
+			      <td><strong>创建时间</strong></td>
 			      <td> <%= @personal_okr.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong>更新时间</strong></td>
+			      <td><strong>更新时间</strong></td>
 			      <td><%= @personal_okr.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
 			    </tr>
 			</table>
