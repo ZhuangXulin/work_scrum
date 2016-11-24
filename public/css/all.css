@@ -9,8 +9,10 @@ body {
 	font:12px/15px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 	color:#8a8a8a;
 	min-width:1000px;
-	background:#fff;
+	/*background:#fff;*/
 	height:100%;
+	overflow: hidden;
+	background: url("../images/left-bg.png") repeat;
 }
 img {border-style:none;}
 a {
@@ -121,8 +123,10 @@ form,fieldset{
 	/*height: 50px;*/
 }
 .profile-box .profile .image {
-	float:left;
-	margin:1px 12px 0 0;
+	float: left;
+	margin: 1px 12px 0 0;
+	border-radius: 50%;
+	border: 1px solid #fff;
 }
 .profile-box a {text-decoration:none;}
 .profile-box .text-box {
@@ -156,7 +160,8 @@ form,fieldset{
 
 .tabs {
 	border-top:1px solid #fff;
-	margin: 20px;
+	margin: 60px 20px 20px;
+	background-color: #fff;
 }
 .tabs .text-section {
 	background:#f9f9f9;
@@ -167,14 +172,14 @@ form,fieldset{
 .tabs h1 {
 	font-size:18px;
 	line-height:20px;
-	margin:0 0 8px;
+	margin:0 0px 10px 0px;
 	color:#2b333b;
 }
 .tabs p {margin:0 0 10px;}
 .states {
 	list-style:none;
 	margin:0;
-	padding:1;
+	padding: 20px;
 }
 .states li {
 	vertical-align:top;
@@ -421,12 +426,12 @@ a {
 }
 #container {
 	position: absolute;
-	left: 155px;
+	left: 170px;
 	right: 0;
-	top: 50px;
+	top: 60px;
 	bottom: 0;
 	overflow-y: auto;
-	background: #fff;
+	background: #f5f5f5;
 }
 input[type="text"],input[type="button"],input[type="submit"],input[type="search"],input[type="date"],input[type="tel"]{-webkit-tap-highlight-color:rgba(255,255,255,0);-webkit-appearance: none;}
 input[type="submit"]{
@@ -455,4 +460,9 @@ input[type="submit"]{
 }
 .states table td a{
 	color: #089eec;
+}
+img.y-img-book{
+	position: absolute;
+	top: 0;
+	left: 0;
 }
