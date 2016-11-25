@@ -54,6 +54,7 @@
 			    </tr>
 			    <tr>
 			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("personalokr.okr_detail_menu.update_time") %></strong></td>
+			      <td><%= @personal_okr.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
 			    </tr>
 			</table>
 				<%= link_to t("personalokr.button.edit"), edit_personalokr_path(@personal_okr) %> |

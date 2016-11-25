@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-<table border="0px" cellspacing="0" cellpadding="0">
+<table border="0px" cellspacing="5px" cellpadding="5px">
   <tr>
       <td align="center" bgcolor="#F7F7F7" width="20%"><strong><%= t("personalokr.okr_detail_menu.personal_name") %></strong></td>
       <td width="80%"><%= select_tag "user_id", options_from_collection_for_select(@department_users, 'id', 'email',@personal_okr.user_id) %></td>
