@@ -359,7 +359,7 @@ img.y-logo{
 #left {
 	position: relative;
 	left: 0;
-	width: 155px;
+	width: 170px;
 	height: 100%;
 	overflow: auto;
 	/*background: #293038;*/
@@ -429,7 +429,7 @@ a {
 }
 #container {
 	position: absolute;
-	left: 170px;
+	left: 190px;
 	right: 0;
 	top: 60px;
 	bottom: 0;
@@ -499,4 +499,9 @@ table#user-box{
 }
 input{
 	outline: none;
+}
+h3.y-title-h3{
+	margin: 55px;
+    color: #666;
+    font-weight: normal;
 }
