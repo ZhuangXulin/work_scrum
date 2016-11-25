@@ -2,9 +2,11 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  
+  #异常捕获
   around_filter :rescue_record_not_found
   around_filter :rescue_exception
+  #国际化
+  before_action :set_locale
 
   def after_sign_in_path_for(resource)
 	   if resource.is_a?(User)
@@ -76,6 +78,18 @@ class ApplicationController < ActionController::Base
     if user
       sign_in user, store: false
     end
+  end
+
+  #设置显示的语言
+  def set_locale
+    if !params[:locale].nil?
+      session[:locale] = params[:locale]
+    elsif session[:locale] != "zh-CN"
+        session[:locale] = "en"
+    end
+    I18n.locale = session[:locale]
+    @locale = session[:locale]
+    #I18n.locale = params[:locale] || I18n.default_locale
   end
 
 end

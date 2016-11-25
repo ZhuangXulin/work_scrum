@@ -29,8 +29,4 @@ module WorkScrum
     config.active_record.default_timezone = :local 
     config.time_zone = 'Beijing'
   end
-
-  if Rails.env == 'development'
-      ActiveRecord::Base.logger = Logger.new(STDOUT)
-  end
 end

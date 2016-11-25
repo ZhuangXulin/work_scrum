@@ -8,27 +8,27 @@
 		<ul class="states" >
 			<%= form_tag '', :method => 'get' do %>
 			<p>
-				<%= select_tag "department_id", options_from_collection_for_select(@departments, 'id', 'department_name') %>&nbsp;&nbsp;&nbsp;
+				<%= select_tag "department_id", options_from_collection_for_select(@departments, 'id', 'department_name',@search_department_id) %>&nbsp;&nbsp;&nbsp;
 				<%= submit_tag "Search", :department => nil %>
 			</p>
 			<% end %>
 		</ul>
 			<ul class="states" >
-				<h1><font color='red'></font>&nbsp;&nbsp;部门(<%= @department_name%>)雇员列表</h1>
+				<h1><font color='red'></font><%= @department_name%>&nbsp;<%= t("department.employee_list") %></h1>
 				<table width="100%">
 				  <thead>
 				    <tr style="text-align: center; COLOR: #0076C8; BACKGROUND-COLOR: #F4FAFF; font-weight: bold">
-						<th width='5%'>序号</th>
-						<th width='20%'>雇员姓名</th>
-						<th width='10%'>所属部门</th>
-						<th width='5%'>权限</th>
-				      	<th witdh='10%'>当前登录时间</th>
-				      	<th witdh='10%'>最后一次登录时间</th>
-				      	<th witdh='10%'>当前登录IP</th>
-				      	<th witdh='10%'>最后一次登录IP</th>
-				      	<th width='5%'>登录次数</th>
-				      	<th width='5%'>账户状态</th>
-				      	<th width='10%'>操作</th>
+						<th width='5%'><%= t("department.list_menu.serial_number") %></th>
+						<th width='20%'><%= t("department.list_menu.employee_name") %></th>
+						<th width='10%'><%= t("department.list_menu.department_name") %></th>
+						<th width='5%'><%= t("department.list_menu.user_role") %></th>
+				      	<th witdh='10%'><%= t("department.list_menu.current_login_time") %></th>
+				      	<th witdh='10%'><%= t("department.list_menu.last_login_time") %></th>
+				      	<th witdh='10%'><%= t("department.list_menu.current_login_ip") %></th>
+				      	<th witdh='10%'><%= t("department.list_menu.last_login_ip") %></th>
+				      	<th width='5%'><%= t("department.list_menu.login_count") %></th>
+				      	<th width='5%'><%= t("department.list_menu.account_status") %></th>
+				      	<th width='10%'><%= t("department.list_menu.operate") %></th>
 				    </tr>
 				  </thead>
 
@@ -46,14 +46,14 @@
 				        	<% if !user.last_sign_in_at.nil? %>
 				        		<%= user.current_sign_in_at.strftime("%Y-%m-%d %H:%M:%S") %> 
 				        	<% else %>
-				        		未登录过
+				        		<%= t("department.view_info.not_logged_in") %>
 				        	<% end %>
 				        </td>
 				        <td align='center'>
 				        	<% if !user.last_sign_in_at.nil? %>
 				        		<%= user.last_sign_in_at.strftime("%Y-%m-%d %H:%M:%S") %> 
 				        	<% else %>
-				        		未登录过
+				        		<%= t("department.view_info.not_logged_in") %>
 				        	<% end %>
 				        </td>
 				        <td align='center'><%= user.current_sign_in_ip %></td>
@@ -61,11 +61,11 @@
 						<td align='center'><%= user.sign_in_count %></td>
 						<td align='center'>
 							<% if user.is_active.nil? %>
-								异常
+								<%= t("department.view_info.error") %>
 							<% elsif user.is_active == true%>
-								<font color='green'>激活</font>
+								<font color='green'><%= t("department.view_info.active") %></font>
 							<% else %>
-								<font color='red'>锁定</font>
+								<font color='red'><%= t("department.view_info.locking") %></font>
 							<% end %>
 						</td>
 				        <td align='center'>
@@ -73,11 +73,11 @@
 					       		<% if user.is_active.nil? %>
 									
 								<% elsif user.is_active == true%>
-									<%= link_to '[锁定]', "/department/active/update?user_id=#{user.id}&active_status=false",data: { confirm: 'Are you sure?' }  %>
+									<%= link_to t("department.button.locking"), "/department/active/update?user_id=#{user.id}&active_status=false",data: { confirm: 'Are you sure?' }  %>
 								<% else %>
-									<%= link_to '[激活]', "/department/unactive/update?user_id=#{user.id}&active_status=#{true}",data: { confirm: 'Are you sure?' }  %>
+									<%= link_to t("department.button.active"), "/department/unactive/update?user_id=#{user.id}&active_status=#{true}",data: { confirm: 'Are you sure?' }  %>
 								<% end %>
-									<%= link_to '[编辑]', "department/edit/update?user_id=#{user.id}" %>
+									<%= link_to t("department.button.edit"), "department/edit/update?user_id=#{user.id}" %>
 							<% end %>
 				        </td>
 				      </tr>
@@ -86,13 +86,12 @@
 				  </tbody>
 				</table>
 			</br>
-			
-每页显示<b><%= @users.per_page %></b>条数据,共有<b><%= @users.total_pages %></b>页,  共有<b><%= @users.total_entries %></b>条数据</br>
-<%= will_paginate @users, :container => false %>
+			<%= t("will_paginate_html",per_page:@users.per_page,total_pages:@users.total_pages,total_entries:@users.total_entries) %> </br>
+			<%= will_paginate @users, :container => false %>
 				<br>
 				<% if @current_user_role == 'admin' || @current_user_role == 'manager' %>
 				<br /><br />
-				<%= link_to '新增雇员', '/department/new' %>
+				<%= link_to t("department.button.add_new_employee"), '/department/new' %>
 				<% end %>
 				<br>
 			</ul>

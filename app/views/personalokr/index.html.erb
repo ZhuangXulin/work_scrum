@@ -8,27 +8,32 @@
 		<ul class="states" >
 			<%= form_tag '', :method => 'get' do %>
 			<p>
-				<%= select_tag "okr_date", options_from_collection_for_select(@date_list, 'okr_date', 'okr_date') %>&nbsp;&nbsp;&nbsp;
-				<%= select_tag "user_id", options_from_collection_for_select(@users, 'id', 'email') %>&nbsp;&nbsp;&nbsp;
+				<%= select_tag "okr_date", options_from_collection_for_select(@date_list, 'okr_date', 'okr_date',@search_okr_date) %>&nbsp;&nbsp;&nbsp;
+				<%= select_tag "user_id", options_from_collection_for_select(@users, 'id', 'email',@search_user_id) %>&nbsp;&nbsp;&nbsp;
 				<%= submit_tag "Search", :okr_date => nil %>
 			</p>
 			<% end %>
 		</ul>
 			<ul class="states" >
+<<<<<<< HEAD
 				<h1><font color='red'><%= @okr_date %></font>&nbsp;&nbsp;OKR列表</h1>
 				<table width="100%" cellspacing="0" cellpadding="0">
+=======
+				<h1><font color='red'><%= @search_okr_date %></font>&nbsp;<%= t("personalokr.okr_list") %></h1>
+				<table width="100%">
+>>>>>>> ZhuangXulin/master
 				  <thead>
 				    <tr style="text-align: center; COLOR: #0076C8; BACKGROUND-COLOR: #F4FAFF; font-weight: bold">
-						<th width='5%'>序号</th>
-						<th width="10%">姓名</th>
-						<th width='20%'>OKR描述</th>
-				      	<th witdh='10%'>创建时间</th>
-				      	<th width='10%'>更新时间</th>
-				      	<th width='5%'>占比</th>
-				      	<th width='5%'>得分</th>
-				      	<th width='10%'>评定时间</th>
-				      	<th width='10%'>评定人</th>
-				      	<th width='10%' colspan="3">操作</th>
+						<th width='5%'><%= t("personalokr.list_menu.serial_number") %></th>
+						<th width="10%"><%= t("personalokr.list_menu.personal_name") %></th>
+						<th width='20%'><%= t("personalokr.list_menu.okr_description") %></th>
+				      	<th witdh='10%'><%= t("personalokr.list_menu.create_time") %></th>
+				      	<th width='10%'><%= t("personalokr.list_menu.update_time") %></th>
+				      	<th width='5%'><%= t("personalokr.list_menu.proportion") %></th>
+				      	<th width='5%'><%= t("personalokr.list_menu.score") %></th>
+				      	<th width='10%'><%= t("personalokr.list_menu.assessment_time") %></th>
+				      	<th width='10%'><%= t("personalokr.list_menu.assessment_person") %></th>
+				      	<th width='10%' colspan="3"><%= t("personalokr.list_menu.operate") %></th>
 				    </tr>
 				  </thead>
 
@@ -63,15 +68,15 @@
 					<% end %>
 				  </tbody>
 				</table>
-				<%if @total_proportion != 0 %>
-					<h3 align='center'>总得分:<font color='green'><%= @total_score %></font>,各个OKR加起来的总比例为:<font color='green'><%= @total_proportion %></font>
+				<%if !@search_user_id.nil? && @total_proportion != 0 %>
+					<h3 align='center'><%= t("personalokr.view_info.total_socre_html",total_score:@total_score,total_proportion:@total_proportion) %>
 						<% if @total_proportion != 1 %>
-							<font color='red'>(总占比应该为1,当前异常,请联系部门经理.))</font>
+							<font color='red'><%= t("personalokr.view_info.proportion_error") %></font>
 						<% end %>
 					</h3>
 				<% end %>
-每页显示<b><%= @personal_okrs.per_page %></b>条数据,共有<b><%= @personal_okrs.total_pages %></b>页,  共有<b><%= @personal_okrs.total_entries %></b>条数据</br>
-<%= will_paginate @personal_okrs, :container => false %>
+				<%= t("will_paginate_html",per_page:@personal_okrs.per_page,total_pages:@personal_okrs.total_pages,total_entries:@personal_okrs.total_entries) %> </br>
+				<%= will_paginate @personal_okrs, :container => false %>
 				<br>
 				<% if @current_user_role == 'employee' %>
 				<%= link_to '新增OKR', '/personalokr/new' %>
