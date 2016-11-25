@@ -33,6 +33,7 @@ select {
 }
 ul.states select{
 	border: 1px solid #bdbdbd;
+	background-color: #fff
 }
 form,fieldset{
 	margin:0;
@@ -500,8 +501,8 @@ table#user-box{
 input{
 	outline: none;
 }
-h3.y-title-h3{
-	margin: 55px;
-    color: #666;
-    font-weight: normal;
+
+#user-box td select#department_id,#user-box td select#user_role{
+	width: 100%
 }
+
