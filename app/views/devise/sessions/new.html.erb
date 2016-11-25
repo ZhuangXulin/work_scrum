@@ -1,77 +1,50 @@
-imagesimagesimages<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta charset="utf-8" />
-<title>YMCRM login</title>
-<style>
-*{
-  padding:0px;
-  margin:0px;
-  }
-    a{color:White}
-body{
-  font-family:Arial, Helvetica, sans-serif;
-  background:url(/images/grass.jpg) repeat  center;
-  font-size:0px;    
-  }
-img{
-  border:0;
-  }
-.lg{width:468px; height:468px; margin:100px auto; background:url(/images/login_bg.png) no-repeat;}
-.lg_top{ height:200px; width:468px;}
-.lg_main{width:400px; height:180px; margin:0 25px;}
-.lg_m_1{
-  width:290px;
-  height:100px;
-  padding:60px 55px 20px 55px;
-}
-.ur{
-  height:37px;
-  border:0;
-  color:#666;
-  width:236px;
-  margin:4px 28px;
-  background:url(/images/user.png) no-repeat;
-  padding-left:10px;
-  font-size:11pt;
-  font-family:Arial, Helvetica, sans-serif;
-}
-.pw{
-  height:37px;
-  border:0;
-  color:#666;
-  width:236px;
-  margin:4px 28px;
-  background:url(/images/password.png) no-repeat;
-  padding-left:10px;
-  font-size:11pt;
-  font-family:Arial, Helvetica, sans-serif;
-}
-.bn{width:330px; height:72px; background:url(/images/enter.png) no-repeat; border:0; display:block; font-size:18px; color:#FFF; font-family:Arial, Helvetica, sans-serif; font-weight:bolder;}
-.lg_foot{
-  height:80px;
-  width:330px;
-  padding: 6px 68px 0 68px;
-}
-</style>
-</head>
+<!DOCTYPE html>
+    <!--[if IE 9 ]><html class="ie9"><![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Work Scrum</title>
+        
+        <!-- Vendor CSS -->
+        <link href="/css/animate.min.css" rel="stylesheet">
+        <link href="/css/material-design-iconic-font.min.css" rel="stylesheet">
 
-<body class="b">
-<div class="lg">
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="lg_top"></div>
-    <div class="lg_main">
-        <div class="lg_m_1">
-      <%= f.email_field :email, autofocus: true,placeholder: 'email',class: 'ur' %>
-    <%= f.password_field :password, autocomplete: "off",placeholder: 'password',class: 'pw' %>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+        <!-- CSS -->
+        <link href="/css/app.min.1.css" rel="stylesheet">
+        <link href="/css/app.min.2.css" rel="stylesheet">
+    </head>
+    <body class="login-content">
+        <!-- Login -->
+        <div class="lc-block toggled" id="l-login">
+            <p class="alert"><%= alert %></p>
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                <div class="input-group m-b-20">
+                    <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+                    <div class="fg-line">
+                        <%= f.email_field :email, autofocus: true,placeholder: 'email',class: 'form-control',style: "ime-mode:disabled"  %>
+                    </div>
+                </div>
+
+                <div class="input-group m-b-20">
+                    <span class="input-group-addon"><i class="zmdi zmdi-male"></i></span>
+                    <div class="fg-line">
+                        <%= f.password_field :password, autocomplete: "off",placeholder: 'password',class: 'form-control' %>
+                    </div>
+                </div>
+                <input type="hidden" name="goUrl" value="${goUrl}">
+                <div class="clearfix"></div>
+                 <button type="submit" class="btn btn-login btn-danger btn-float"><i class="zmdi zmdi-arrow-forward"></i></button>
+            <% end %>
         </div>
-    </div>
-    <div class="lg_foot">
-    <%= f.submit "Log in",class: 'bn' %>
-  </div>
-<% end %>
-</div>
-</body>
+
+        <!-- Javascript Libraries -->
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+
+        <script src="/js/waves.min.js"></script>
+
+        <script src="/js/functions.js"></script>
+        
+    </body>
 </html>

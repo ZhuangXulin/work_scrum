@@ -16,36 +16,45 @@ class PersonalokrController < ApplicationController
 		if okr_date.nil?
 			okr_date = BasicDate.get_last_date.okr_date
 		end
-		@okr_date = okr_date
+		@search_okr_date = okr_date
 
 		#获取用户列表
 		if @current_user_role == "admin"
-			@users = User.get_all_users
+			@users = User.get_all_users_without_admin_and_manager
 		elsif @current_user_role == "manager"
-			@users = User.get_department_users(@current_user_department_id)
+			@users = User.get_department_users_without_manager(@current_user_department_id)
 		else
 			@users = User.where(:id => current_user.id)
 		end
 		#personal okr列表
-		user_id = params[:user_id]
-		if user_id.nil?
-			user_id = current_user.id
-		end
-		@personal_okrs = Personalokr.get_personal_okrs(user_id,okr_date,params[:page])
+		@search_user_id = params[:user_id]
+
+		@personal_okrs = Personalokr.get_personal_okrs(current_user.id,@current_user_role,@search_user_id,okr_date,params[:page])
 		#计算个人总分
-		@total_score = 0
+		total_personal_score = 0
+		total_department_score = 0
 		@total_proportion = 0
-		if !@personal_okrs.nil?
+		if !@personal_okrs.nil? && !@search_user_id.nil?
 			@personal_okrs.each {|personal_okr| 
 			if !personal_okr.okr_score.nil?
-				@total_score += personal_okr.okr_score
+				total_personal_score += personal_okr.okr_score
 			end
 			if !personal_okr.okr_proportion .nil?
 				@total_proportion += personal_okr.okr_proportion 
 			end
 			}
+
+			#计算用户所在的部门总分
+			department_id = Department.get_department_id_by_user(@search_user_id)
+			@department_okrs = Departmentokr.get_department_okrs(department_id,okr_date,params[:page])
+			@department_okrs.each {|department_okr|
+			if !department_okr.okr_score.nil?
+				total_department_score += department_okr.okr_score
+			end
+			}
 		end
-		@total_score = @total_score.round(3)
+
+		@total_score = (total_personal_score*0.5+total_department_score*0.5).round(3)
 	end
 
 	def new
@@ -95,7 +104,7 @@ class PersonalokrController < ApplicationController
 		#日期列表
 		@date_list = BasicDate.get_date_list
 		#部门用户列表
-		@department_users = User.get_department_users_with_user_role(current_user.id,@current_user_role,@current_user_department_id)
+		@department_users = User.where(:id => @personal_okr.user_id)
 		#完成状态列表
 		@okr_stats = OkrStat.get_okr_data_list
 		#难度系数列表

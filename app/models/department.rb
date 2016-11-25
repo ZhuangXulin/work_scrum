@@ -9,7 +9,12 @@ class Department < ActiveRecord::Base
 
 	#根据用户ID获取用户所在部门名称
 	def self.get_department_name_by_user(user_id)
-		ActiveRecord::Base.connection.execute("select department_name from departments as d,department_users as du where d.id = du.department_id and du.user_id = '#{user_id}' ")
+		Department.find_by_sql("select department_name from departments as d,department_users as du where d.id = du.department_id and du.user_id = '#{user_id}' ").first.department_name
+	end
+
+	#根据用户ID获取用户所在部门ID
+	def self.get_department_id_by_user(user_id)
+		Department.find_by_sql("select d.id from departments as d,department_users as du where d.id = du.department_id and du.user_id = '#{user_id}' ").first.id
 	end
 
 	#获取部门列表
