@@ -11,27 +11,27 @@
     </div>
   <% end %>
 
-<table border="0px" cellspacing="5px" cellpadding="5px">
+<table cellspacing="0" cellpadding="0" id="user-box">
   <% if !@update_password %>
   <tr>
-      <td align="center" bgcolor="#F7F7F7" width="20%"><strong><%= t("department.department_detail_menu.department_name") %></strong></td>
-      <td width="80%"><%= select_tag "department_id", options_from_collection_for_select(@departments, 'id', 'department_name',@user_department_id) %></td>
+      <td ><strong><%= t("department.department_detail_menu.department_name") %></strong></td>
+      <td ><%= select_tag "department_id", options_from_collection_for_select(@departments, 'id', 'department_name',@user_department_id) %></td>
   </tr>
   <tr>
-      <td align="center" bgcolor="#F7F7F7" width="20%"><strong><%= t("department.department_detail_menu.user_role") %></strong></td>
-      <td width="80%"><%= select_tag "user_role", options_from_collection_for_select(@roles,'id','name',@user_role) %></td>
+      <td ><strong><%= t("department.department_detail_menu.user_role") %></strong></td>
+      <td ><%= select_tag "user_role", options_from_collection_for_select(@roles,'id','name',@user_role) %></td>
   </tr>
   <% end %>
   <tr>
-      <td align="center" bgcolor="#F7F7F7" ><strong><%= t("department.department_detail_menu.user_id") %></strong></td>
+      <td ><strong><%= t("department.department_detail_menu.user_id") %></strong></td>
       <td><%= f.text_field :id, autofocus: true ,size: 100 ,value: @user_id,readonly: true %></td>
   </tr>
   <tr>
-      <td align="center" bgcolor="#F7F7F7" ><strong><%= t("department.department_detail_menu.email") %></strong></td>
+      <td ><strong><%= t("department.department_detail_menu.email") %></strong></td>
       <td><%= f.email_field :email, autofocus: true ,size: 100 %></td>
   </tr>
   <tr>
-      <td align="center" bgcolor="#F7F7F7">
+      <td >
         <strong><%= t("department.department_detail_menu.password") %>
           <% if @minimum_password_length %>
             <em>(<%= @minimum_password_length %> characters minimum)</em>
@@ -40,7 +40,7 @@
       <td ><%= f.password_field :password, autocomplete: "off",size: 100 %></td>
   </tr>
   <tr>
-      <td align="center" bgcolor="#F7F7F7"><strong><%= t("department.department_detail_menu.password_confirmation") %></strong></td>
+      <td><strong><%= t("department.department_detail_menu.password_confirmation") %></strong></td>
       <td ><%= f.password_field :password_confirmation, autocomplete: "off",size: 100 %></td>
   </tr>
 

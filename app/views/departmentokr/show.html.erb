@@ -1,63 +1,63 @@
 <div class="tabs">
 	<div id="tab-1" class="tab">
 		<article>
-			<div class="text-section">
+			<!-- <div class="text-section">
 				<h1><p id="notice"><%= notice %></p></h1>
-			</div>
+			</div> -->
 			
-		<ul class="states" >
+		<ul class="states" style="padding-top: 0">
 			<h1><%= t("departmentokr.okr_detail_menu.okr_detail") %></h1>
-			<table border="0px" cellspacing="5px" cellpadding="5px">
+			<table width="100%" cellspacing="0" cellpadding="0">
 			  <tr>
-			      <td align="center" bgcolor="#F7F7F7" width="20%"><strong><%= t("departmentokr.okr_detail_menu.department_name") %></strong></td>
+			      <td ><strong><%= t("departmentokr.okr_detail_menu.department_name") %></strong></td>
 			      <td width="80%"><%= @department_okr.department_name %></td>
 			  </tr>
 			  <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("departmentokr.okr_detail_menu.okr_time") %></strong></td>
+			      <td ><strong><%= t("departmentokr.okr_detail_menu.okr_time") %></strong></td>
 			      <td ><%= @department_okr.okr_date %></td>
 			  </tr>
 				<tr>
-			    	<td align="center" bgcolor="#F7F7F7"><strong><%= t("departmentokr.okr_detail_menu.okr_description") %></strong></td>
+			    	<td><strong><%= t("departmentokr.okr_detail_menu.okr_description") %></strong></td>
 			    	<td><%= @department_okr.okr_name %></td>
 				</tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("departmentokr.okr_detail_menu.okr_proportion") %></strong></td>
+			      <td ><strong><%= t("departmentokr.okr_detail_menu.okr_proportion") %></strong></td>
 			      <td><%= @department_okr.okr_proportion %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("departmentokr.okr_detail_menu.okr_status") %></strong></td>
+			      <td ><strong><%= t("departmentokr.okr_detail_menu.okr_status") %></strong></td>
 			      <td><%= @department_okr.okr_stats_name %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("departmentokr.okr_detail_menu.okr_degree_of_difficulty") %></strong></td>
+			      <td ><strong><%= t("departmentokr.okr_detail_menu.okr_degree_of_difficulty") %></strong></td>
 			      <td><%= @department_okr.okr_degree_of_difficulty_name %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("departmentokr.okr_detail_menu.okr_score") %></strong></td>
+			      <td ><strong><%= t("departmentokr.okr_detail_menu.okr_score") %></strong></td>
 			      <td><%= @department_okr.okr_score %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("departmentokr.okr_detail_menu.assessment_person") %></strong></td>
+			      <td ><strong><%= t("departmentokr.okr_detail_menu.assessment_person") %></strong></td>
 			      <td><%= @department_okr.assessment_person_email %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("departmentokr.okr_detail_menu.assessment_time") %></strong></td>
+			      <td ><strong><%= t("departmentokr.okr_detail_menu.assessment_time") %></strong></td>
 			      <td><%= @department_okr.assessment_time %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("departmentokr.okr_detail_menu.remark") %></strong></td>
+			      <td ><strong><%= t("departmentokr.okr_detail_menu.remark") %></strong></td>
 			      <td><%= @department_okr.description %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("departmentokr.okr_detail_menu.create_user") %></strong></td>
+			      <td ><strong><%= t("departmentokr.okr_detail_menu.create_user") %></strong></td>
 			      <td> <%= @department_okr.create_user_email %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("departmentokr.okr_detail_menu.create_time") %></strong></td>
+			      <td ><strong><%= t("departmentokr.okr_detail_menu.create_time") %></strong></td>
 			      <td> <%= @department_okr.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("departmentokr.okr_detail_menu.update_time") %></strong></td>
+			      <td ><strong><%= t("departmentokr.okr_detail_menu.update_time") %></strong></td>
 			      <td><%= @department_okr.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
 			    </tr>
 			</table>

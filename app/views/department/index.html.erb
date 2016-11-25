@@ -1,11 +1,11 @@
 <div class="tabs">
 	<div id="tab-1" class="tab">
 		<article>
-			<div class="text-section">
+			<!-- <div class="text-section">
 				<h1><p id="notice"><%= notice %></p></h1>
-			</div>
+			</div> -->
 			
-		<ul class="states" >
+		<ul class="states" style="padding-bottom: 15px">
 			<%= form_tag '', :method => 'get' do %>
 			<p>
 				<%= select_tag "department_id", options_from_collection_for_select(@departments, 'id', 'department_name',@search_department_id) %>&nbsp;&nbsp;&nbsp;
@@ -13,22 +13,22 @@
 			</p>
 			<% end %>
 		</ul>
-			<ul class="states" >
+			<ul class="states" style="padding-top: 0">
 				<h1><font color='red'></font><%= @department_name%>&nbsp;<%= t("department.employee_list") %></h1>
-				<table width="100%">
+				<table width="100%" cellpadding="0" cellspacing="0">
 				  <thead>
-				    <tr style="text-align: center; COLOR: #0076C8; BACKGROUND-COLOR: #F4FAFF; font-weight: bold">
-						<th width='5%'><%= t("department.list_menu.serial_number") %></th>
-						<th width='20%'><%= t("department.list_menu.employee_name") %></th>
-						<th width='10%'><%= t("department.list_menu.department_name") %></th>
-						<th width='5%'><%= t("department.list_menu.user_role") %></th>
-				      	<th witdh='10%'><%= t("department.list_menu.current_login_time") %></th>
-				      	<th witdh='10%'><%= t("department.list_menu.last_login_time") %></th>
-				      	<th witdh='10%'><%= t("department.list_menu.current_login_ip") %></th>
-				      	<th witdh='10%'><%= t("department.list_menu.last_login_ip") %></th>
-				      	<th width='5%'><%= t("department.list_menu.login_count") %></th>
-				      	<th width='5%'><%= t("department.list_menu.account_status") %></th>
-				      	<th width='10%'><%= t("department.list_menu.operate") %></th>
+				    <tr >
+						<th><%= t("department.list_menu.serial_number") %></th>
+						<th><%= t("department.list_menu.employee_name") %></th>
+						<th><%= t("department.list_menu.department_name") %></th>
+						<th><%= t("department.list_menu.user_role") %></th>
+				      	<th><%= t("department.list_menu.current_login_time") %></th>
+				      	<th><%= t("department.list_menu.last_login_time") %></th>
+				      	<th><%= t("department.list_menu.current_login_ip") %></th>
+				      	<th><%= t("department.list_menu.last_login_ip") %></th>
+				      	<th><%= t("department.list_menu.login_count") %></th>
+				      	<th><%= t("department.list_menu.account_status") %></th>
+				      	<th><%= t("department.list_menu.operate") %></th>
 				    </tr>
 				  </thead>
 
@@ -36,7 +36,7 @@
 					  <% if @users != nil %>
 				    <% @users.each_with_index do |user,i| %>
 				      <tr <%= if (i+1)%2 ==0
-				      	"style=background-Color:#F7F7F7"
+				      	
 				      end%>>
 						<td align='center'><%= i+1 %></td>
 						<td align='center'><%= user.email %></td>
