@@ -41,6 +41,7 @@ gem 'rolify'
 gem 'will_paginate', '~> 3.0'
 
 # 登录验证码
+gem 'simple_captcha'
 gem 'simple_captcha2', require: 'simple_captcha'
 
 group :development, :test do

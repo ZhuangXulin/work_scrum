@@ -127,6 +127,7 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    simple_captcha (0.1.3)
     simple_captcha2 (0.4.0)
       rails (>= 4.1)
     spring (1.3.6)
@@ -170,6 +171,7 @@ DEPENDENCIES
   rolify
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  simple_captcha
   simple_captcha2
   spring
   sqlite3
