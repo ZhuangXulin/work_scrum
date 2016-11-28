@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   #异常捕获
   around_filter :rescue_record_not_found
-  around_filter :rescue_exception
+  #around_filter :rescue_exception
   #国际化
   before_action :set_locale  
 
