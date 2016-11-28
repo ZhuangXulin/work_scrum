@@ -11,6 +11,7 @@ class DepartmentokrController < ApplicationController
 	before_action :get_roles
 	
 	def index
+		Log.log_user_action(current_user.id,request.remote_ip,'View Department OKR')
 		#基础日期列表
 		@date_list = BasicDate.get_date_list
 		#获取查询的日期
@@ -51,6 +52,7 @@ class DepartmentokrController < ApplicationController
 	end
 
 	def new
+		Log.log_user_action(current_user.id,request.remote_ip,'Ready to Add Department OKR')
 		@department_okr = Departmentokr.new
 		#OKR所属日期列表
 		@date_list = BasicDate.get_date_list
@@ -58,6 +60,7 @@ class DepartmentokrController < ApplicationController
 	end
 
 	def create
+		Log.log_user_action(current_user.id,request.remote_ip,'Add Department OKR')
 		@department_okr = Departmentokr.create(:okr_name => department_okr_params[:okr_name],:okr_date => department_okr_params[:okr_date],:department_id => params[:department_id],:create_user_id => current_user.id)
 		respond_to do |format|
         if @department_okr.save
@@ -70,6 +73,7 @@ class DepartmentokrController < ApplicationController
 	end
 
 	def edit
+		Log.log_user_action(current_user.id,request.remote_ip,'Ready to Update Department OKR')
 		@department_okr = Departmentokr.find(params[:id])
 		#日期列表
 		@date_list = BasicDate.get_date_list
@@ -81,6 +85,7 @@ class DepartmentokrController < ApplicationController
   	end
 
 	def update
+		Log.log_user_action(current_user.id,request.remote_ip,'Update Department OKR')
   		@department_okr = Departmentokr.find(params[:id])
 
   		respond_to do |format|
@@ -115,6 +120,7 @@ class DepartmentokrController < ApplicationController
   	end
 
   	def destroy
+  		Log.log_user_action(current_user.id,request.remote_ip,'Destrop Department OKR')
   		@department_okr = Departmentokr.find(params[:id])
   		@department_okr.destroy
   		respond_to do |format|
@@ -123,6 +129,7 @@ class DepartmentokrController < ApplicationController
 	end
 
 	def show
+		Log.log_user_action(current_user.id,request.remote_ip,'Show Department OKR Info')
     	@department_okr = Departmentokr.get_department_okr_info(params[:id])
   	end
 

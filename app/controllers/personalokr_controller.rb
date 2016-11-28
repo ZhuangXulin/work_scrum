@@ -9,6 +9,7 @@ class PersonalokrController < ApplicationController
 	before_action :get_roles
 
 	def index
+		Log.log_user_action(current_user.id,request.remote_ip,'View Personal OKR')
 		#基础日期列表
 		@date_list = BasicDate.get_date_list
 		#获取查询的日期
@@ -58,6 +59,7 @@ class PersonalokrController < ApplicationController
 	end
 
 	def new
+		Log.log_user_action(current_user.id,request.remote_ip,'Ready to Add Personal OKR')
 		@personal_okr = Personalokr.new
 		#OKR所属日期列表
 		@date_list = BasicDate.get_date_list
@@ -71,6 +73,7 @@ class PersonalokrController < ApplicationController
 	end
 
 	def create
+		Log.log_user_action(current_user.id,request.remote_ip,'Add Personal OKR')
 		@personal_okr = Personalokr.create(:okr_name => personal_okr_params[:okr_name],:okr_date => personal_okr_params[:okr_date],:user_id => current_user.id)
 		respond_to do |format|
         if @personal_okr.save
@@ -83,11 +86,13 @@ class PersonalokrController < ApplicationController
 	end
 
 	def show
+		Log.log_user_action(current_user.id,request.remote_ip,'Show Personal OKR Info')
     	@personal_okr = Personalokr.get_personal_okr_info(params[:id])
 	end
 
 	#删除个人的okr（okr所有者，部门管理者，系统管理员操作）
 	def destroy
+		Log.log_user_action(current_user.id,request.remote_ip,'Destroy Personal OKR')
   		personal_okr = Personalokr.find(params[:id])
   		respond_to do |format|
 	  		if personal_okr.assessment_time.nil?
@@ -100,6 +105,7 @@ class PersonalokrController < ApplicationController
 	end
 
 	def edit
+		Log.log_user_action(current_user.id,request.remote_ip,'Ready to Update Personal OKR')
 		@personal_okr = Personalokr.find(params[:id])
 		#日期列表
 		@date_list = BasicDate.get_date_list
@@ -113,6 +119,7 @@ class PersonalokrController < ApplicationController
   	end
 
   	def update
+  		Log.log_user_action(current_user.id,request.remote_ip,'Update Personal OKR')
   		@personal_okr = Personalokr.find(params[:id])
   		respond_to do |format|
   			#部门管理员或者是系统管理员能够对OKR进行评定，雇员只能够修改自己的OKR内容

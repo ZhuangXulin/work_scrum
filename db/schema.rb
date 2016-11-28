@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161123011831) do
+ActiveRecord::Schema.define(version: 20161128034357) do
 
   create_table "basic_dates", force: :cascade do |t|
     t.string   "okr_date",      null: false
@@ -55,6 +55,14 @@ ActiveRecord::Schema.define(version: 20161123011831) do
     t.integer  "serial_number", null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "logs", force: :cascade do |t|
+    t.integer  "user_id",                     null: false
+    t.string   "user_ip",                     null: false
+    t.string   "type_of_action", default: "", null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "okr_stats", force: :cascade do |t|
