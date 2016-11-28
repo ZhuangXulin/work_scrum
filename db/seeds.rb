@@ -17,9 +17,11 @@ Department.create(:id => 2,:department_name => "UED部")
 Department.create(:id => 3,:department_name => "测试部")
 Department.create(:id => 4,:department_name => "运维部")
 Department.create(:id => 5,:department_name => "基础平台部")
-Department.create(:id => 6,:department_name => "语音部")
+Department.create(:id => 6,:department_name => "语音技术部")
 Department.create(:id => 7,:department_name => "金融技术部")
-Department.create(:id => 8,:department_name => "项目部")
+Department.create(:id => 8,:department_name => "终端技术部")
+Department.create(:id => 9,:department_name => "公正邮技术部")
+Department.create(:id => 10,:department_name => "项目部")
 #创建管理员
 User.destroy_all
 User.create(:id => 1,:email => "zhuangxulin@ancun.com",:password => "zhuangxulin2003")
