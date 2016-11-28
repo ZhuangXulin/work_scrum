@@ -11,7 +11,7 @@
 </head>
 <body>
 <div id="header" class="clearfix">
-      <a href="javascript:;" class="y-logo-title">work Scrum</a>
+      <a href="javascript:;" class="y-logo-title">Work Scrum</a>
       <div class="profile-box">
 		<span class="profile">
 			<% if @locale.nil? || @locale == "en" %>
@@ -39,7 +39,7 @@
 <div id="left">
   <ul class="left-nav">
     <li>
-      <a href="/departmentokr" class="current"><em class="y-departmentdept"></em><%= t("menu.department_okr") %></a>
+      <a href="/departmentokr" ><em class="y-departmentdept"></em><%= t("menu.department_okr") %></a>
     </li>
     <li>
       <a href="/personalokr"><em class="y-personal"></em><%= t("menu.personal_okr") %></a>
@@ -51,7 +51,7 @@
       <a href="/topemployee"><em class="y-personal"></em><%= t("menu.top_employee") %></a>
     </li>
     <li>
-      <a href="/" class="ico1"><em class="y-help"></em><%= t("menu.help") %></a>
+      <a href="/" class="ico1" class="current"><em class="y-help"></em><%= t("menu.help") %></a>
     </li>
   </ul>
 </div>

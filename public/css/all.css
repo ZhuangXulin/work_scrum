@@ -113,7 +113,7 @@ form,fieldset{
 	margin-right: 20px;
 }
 .btn-on {
-	width: 35px;
+	/*width: 35px;*/
 	height: 40px;
 	overflow: hidden;
 	float: left;
@@ -511,4 +511,9 @@ a.y-logo-title{
     padding: 16px 0 0 16px;
     display: block;
     float: left;
+}
+#left ul.left-nav{
+	background: rgba(44,67,103,.6);
+    margin-top: 20px;
+    border-radius: 4px;
 }
