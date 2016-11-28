@@ -505,4 +505,10 @@ input{
 #user-box td select#department_id,#user-box td select#user_role{
 	width: 100%
 }
-
+#header a.y-logo-title{
+	font-size: 25px;
+    color: #fff;
+    padding: 16px 0 0 16px;
+    display: block;
+    float: left;
+}
