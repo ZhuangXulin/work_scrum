@@ -141,3 +141,11 @@ zh-CN:
       edit: "更新"
       destroy: "删除"
       back: "返回"
+  simple_captcha:
+    placeholder: "输入图片中的内容"
+    label: "Enter the code in the box:"
+    refresh_button_text: "刷新"
+    message:
+      default: "Secret Code did not match with the Image"
+      user: "The secret Image and code were different"
+      error: "输入的验证码不正确, 请重新输入."
