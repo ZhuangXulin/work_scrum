@@ -17,25 +17,27 @@
       <!-- <img src="/images/logo.png" alt="logo" class="y-logo"> -->
       <div class="profile-box">
 		<span class="profile" style="position: relative">
-			<% if @locale.nil? || @locale == "en" %>
-				<a href="welcome?locale=zh-CN" class="section">
-			<% else %>
-				<a href="welcome?locale=en" class="section">
-			<% end %>
+			
 				<img class="image" src="/images/img1.png" alt="image description" width="26" height="26" />
 				<span class="text-box">
-					<% if @locale.nil? || @locale == "en" %>
-						<strong class="name">Welcome,设置中文语言</strong>
-					<% else %>
-						<strong class="name">Welcome,Change To English</strong>
-					<% end %>
+					<strong style="display: block; padding-top: 5px">welcome</strong>
 					<strong><%= current_user.email %></strong>
 				</span>
 			</a>
 			<a href="javascript:;" class="opener">opener</a>
-      <!-- <div class="change_box" > -->
-            <a href="/department/edit/update" class="change_box">修改密码</a>
-          <!-- </div> -->
+      <div class="change_box" >
+            <a href="/department/edit/update" >修改密码</a>
+            <% if @locale.nil? || @locale == "en" %>
+              <a href="welcome?locale=zh-CN" class="section">
+            <% else %>
+              <a href="welcome?locale=en" class="section">
+            <% end %>
+            <% if @locale.nil? || @locale == "en" %>
+            <strong class="name">设置中文语言</strong>
+          <% else %>
+            <strong class="name">Change To English</strong>
+          <% end %>
+      </div>
 		</span>
 		 <%= link_to('Logout', destroy_user_session_path,class: 'btn-on') %>     
 	</div>
@@ -71,9 +73,8 @@
 </body>
 <script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
    <script type="text/javascript">
-     $('.opener').on('click', function() {
-      alert(1)
-       $(this).siblings('a.change_box').toggle('a.change_box')
+     $('.profile').on('click', function() {
+       $(this).children('.change_box').toggle('.change_box')
      });
    </script>
 </html>

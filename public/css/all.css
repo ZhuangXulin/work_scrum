@@ -125,10 +125,11 @@ form,fieldset{
 	float: left;
 	border-radius: 1px 1px 0 0;
 	/*height: 50px;*/
+	cursor: pointer;
 }
 .profile-box .profile .image {
 	float: left;
-	margin: 1px 12px 0 0;
+	margin: 5px 12px 0 0;
 	border-radius: 50%;
 	border: 1px solid #fff;
 }
@@ -140,10 +141,10 @@ form,fieldset{
 	font-size:12px;
 	line-height:12px;
 }
-.profile-box .section {
+/*.profile-box .section {
 	padding:4px 5px 0 7px;
 	float:left;
-}
+}*/
 .profile-box a.section {cursor:pointer;}
 .profile-box .name {
 	display:block;
@@ -151,6 +152,7 @@ form,fieldset{
 	line-height:15px;
 	/*color:#4f5f6f;*/
 	font-weight:normal;
+	line-height: 35px
 }
 .profile-box .opener {
 	float:left;
@@ -519,11 +521,12 @@ a.y-logo-title{
 }
 .change_box{
 	width: 85%;
-	background-color: #00aad9;
+	background-color: #0262a3;
 	position: absolute;
 	top: 40px;
 	z-index: 10000;
-	left: 25px
+	left: 25px;
+	display: none;
 }
 .change_box a{
 	display: block;
@@ -547,5 +550,8 @@ a.change_box{
 	display: none;
 }
 a.change_box:hover{
+	background-color: #156eab
+}
+.change_box a:hover{
 	background-color: #156eab
 }
