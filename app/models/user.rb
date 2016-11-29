@@ -82,7 +82,7 @@ class User < ActiveRecord::Base
             left join departments as d 
             on d.id = du.department_id
             left join users_roles as ur
-            on u.id = ur.user_id order by users.email"
+            on u.id = ur.user_id "
   		User.paginate_by_sql(sql, :page => page, :per_page => per_page)
   	else
       sql = "select u.id,u.email,u.sign_in_count,u.current_sign_in_ip,u.current_sign_in_at,u.last_sign_in_ip,u.last_sign_in_at,u.is_active,d.department_name,ur.role_id,(select name from roles where id = ur.role_id) as role_name  
@@ -93,7 +93,7 @@ class User < ActiveRecord::Base
             on d.id = du.department_id
             left join users_roles as ur
             on u.id = ur.user_id 
-            where du.department_id = #{department_id} order by users.email "
+            where du.department_id = #{department_id}"
   		User.paginate_by_sql(sql, :page => page, :per_page => per_page)
   	end
   end
