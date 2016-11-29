@@ -31,6 +31,13 @@
       <td><%= f.email_field :email, autofocus: true ,size: 100 %></td>
   </tr>
   <tr>
+    <td colspan="2">
+      <% if @action == :update %>
+        <p><font color="red"><%= t("department.update_person_password_alarm_html") %></font></p>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
       <td >
         <strong><%= t("department.department_detail_menu.password") %>
           <% if @minimum_password_length %>

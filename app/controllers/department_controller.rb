@@ -127,10 +127,18 @@ class DepartmentController < ApplicationController
 		ActiveRecord::Base.transaction do
 			if params[:department_id].nil?
 				user = User.find(params[:user][:id])
-				user.update_attributes(:password => params[:user][:password])
+				if params[:user][:password].empty?
+					user.update_attributes(:email => params[:user][:email])
+				else
+					user.update_attributes(:email => params[:user][:email],:password => params[:user][:password])
+				end
 			else
 				user = User.find(params[:user][:id])
-				user.update_attributes(:password => params[:user][:password])
+				if params[:user][:password].empty?
+					user.update_attributes(:email => params[:user][:email])
+				else
+					user.update_attributes(:email => params[:user][:email],:password => params[:user][:password])
+				end
 				#更新人员所属部门
 				department_user = DepartmentUser.where(:user_id => params[:user][:id]).first
 				department_user.update_attributes(:department_id => params[:department_id])

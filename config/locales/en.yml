@@ -33,6 +33,7 @@ en:
     update_department_employee: "Update Department Employee"
     create_department_employee: "Add New Employee"
     update_person_password: "Update Person Password"
+    update_person_password_alarm_html: "If you do not enter password when update user info,<br >we will not change the original password"
     list_menu:
       serial_number: "Serial Number"
       employee_name: "Employee Name"
