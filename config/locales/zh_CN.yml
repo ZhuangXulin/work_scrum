@@ -33,7 +33,7 @@ zh-CN:
     update_department_employee: "更新部门雇员"
     create_department_employee: "新增部门雇员"
     update_person_password: "修改用户密码"
-    update_person_password_alarm: "更新内容时不输入密码,<br>则不会修改原来密码."
+    update_person_password_alarm_html: "更新内容时不输入密码,<br>则不会修改原来密码."
     list_menu:
       serial_number: "序号"
       employee_name: "雇员姓名"
