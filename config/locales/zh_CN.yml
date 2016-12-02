@@ -68,6 +68,7 @@ zh-CN:
     okr_list: "OKR列表"
     update_department_okr: "更新部门OKR内容"
     create_department_okr: "创建部门OKR内容"
+    can_not_update_message: "数据将不会更新."
     list_menu:
       serial_number: "序号"
       department_name: "部门"
@@ -107,6 +108,7 @@ zh-CN:
     okr_list: "OKR列表"
     update_personal_okr: "更新用户OKR内容"
     create_personal_okr: "创建用户OKR内容"
+    can_not_update_message: "数据将不会更新."
     list_menu:
       serial_number: "序号"
       personal_name: "姓名"

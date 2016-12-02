@@ -42,7 +42,11 @@
 			    </tr>
 			    <tr>
 			      <td><strong><%= t("personalokr.okr_detail_menu.assessment_time") %></strong></td>
-			      <td><%= @personal_okr.assessment_time %></td>
+			      <%if !@personal_okr.assessment_time.nil? %>
+			      	<td><%= @personal_okr.assessment_time.strftime("%Y-%m-%d %H:%M:%S")  %></td>
+			      <% else %>
+			      	<td><%= @personal_okr.assessment_time %></td>
+			      <% end%>
 			    </tr>
 			    <tr>
 			      <td><strong><%= t("personalokr.okr_detail_menu.description") %></strong></td>

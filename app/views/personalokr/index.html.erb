@@ -52,10 +52,10 @@
 						</td>
 						<td><%= personal_okr.assessment_person_email %></td>
 				        <td>
-				        	<%= link_to 'Show', personal_okr %>&nbsp;
+				        	<%= link_to t("personalokr.button.show"), personal_okr %>&nbsp;
 				        	<% if @current_user_role == 'admin' || @current_user_role == 'manager' || personal_okr.email == current_user.email %>
-				        	<%= link_to 'Edit', edit_personalokr_path(personal_okr) %>&nbsp;
-				        	<%= link_to 'Destroy', personal_okr, method: :delete, data: { confirm: 'Are you sure?' } %>
+				        	<%= link_to t("personalokr.button.edit"), edit_personalokr_path(personal_okr) %>&nbsp;
+				        	<%= link_to t("personalokr.button.destroy"), personal_okr, method: :delete, data: { confirm: 'Are you sure?' } %>
 				        	<% end %>
 				        </td>
 				      </tr>

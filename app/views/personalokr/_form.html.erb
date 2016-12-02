@@ -11,6 +11,11 @@
     </div>
   <% end %>
 <table cellspacing="0" cellpadding="0" width="100%">
+  <% if !@personal_okr.okr_score.nil? %>
+    <tr>
+        <td colspan = '2'><font color="red"><%= t('personalokr.can_not_update_message')%></font></td>
+    </tr>
+  <% end%>
   <tr>
       <td ><strong><%= t("personalokr.okr_detail_menu.personal_name") %></strong></td>
       <td ><%= select_tag "user_id", options_from_collection_for_select(@department_users, 'id', 'email',@personal_okr.user_id) %></td>

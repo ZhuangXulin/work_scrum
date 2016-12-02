@@ -11,6 +11,11 @@
     </div>
   <% end %>
 <table border="0px" cellspacing="0" cellpadding="0">
+  <% if !@department_okr.okr_score.nil? %>
+    <tr>
+        <td colspan = '2'><font color="red"><%= t('departmentokr.can_not_update_message')%></font></td>
+    </tr>
+  <% end%>
   <tr>
       <td><strong><%= t("departmentokr.okr_detail_menu.department_name") %></strong></td>
       <td ><%= select_tag "department_id", options_from_collection_for_select(@departments, 'id', 'department_name',@department_okr.department_id) %></td>

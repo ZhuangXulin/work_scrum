@@ -68,6 +68,7 @@ en:
     okr_list: "OKR List"
     update_department_okr: "Update Department OKR"
     create_department_okr: "Create Department OKR"
+    can_not_update_message: "Data Can Not Update."
     list_menu:
       serial_number: "Serial Number"
       department_name: "Department"
@@ -107,6 +108,7 @@ en:
     okr_list: "OKR List"
     update_personal_okr: "Update Personal OKR"
     create_personal_okr: "Create Personal OKR"
+    can_not_update_message: "Data Can Not Update."
     list_menu:
       serial_number: "Serial Number"
       personal_name: "Person Name"
