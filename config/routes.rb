@@ -62,5 +62,5 @@ Rails.application.routes.draw do
   get ':controller(/:action(/:id))(.:format)'
   post ':controller(/:action(/:id))(.:format)'
 
-  match '*path', via: :all, to: 'public#404.html'
+  #match '*path', via: :all, to: 'public#404.html'
 end
