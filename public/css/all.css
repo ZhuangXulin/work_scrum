@@ -27,7 +27,7 @@ select {
 	vertical-align:middle;
 	color:#8a8a8a;
 	height: 35px;
-	width: 100px;
+	/*width: 100px; */
 	padding-left: 8px;
 	/*border-radius: 4px;*/
 }
@@ -496,7 +496,7 @@ table#user-box{
     margin-top: 20px;
 }
 .actions input[type='submit']{
-	width: 80px;
+	width: 150px;
     height: 35px;
     padding-right: 8px
 }
