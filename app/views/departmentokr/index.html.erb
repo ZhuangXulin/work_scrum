@@ -47,15 +47,15 @@
 						<td align='center'><%= department_okr.okr_score %></td>
 						<td align='center'>
 							<% if !department_okr.assessment_time.nil? %>
-							<%= department_okr.assessment_time.strftime("%Y-%m-%d %H:%M:%S") %>
+								<%= department_okr.assessment_time.strftime("%Y-%m-%d %H:%M:%S") %>
 							<% end %>
 						</td>
 						<td align='center'><%= department_okr.assessment_person_email %></td>
 				        <td align='center'>
 				        	<%= link_to t("departmentokr.button.show"), department_okr %>&nbsp;
 				        	<% if @current_user_role == 'admin' || @current_user_role == 'manager' %>
-				        	<%= link_to t("departmentokr.button.edit"), edit_departmentokr_path(department_okr) %>&nbsp;
-				        	<%= link_to t("departmentokr.button.destroy"), department_okr, method: :delete, data: { confirm: 'Are you sure?' } %>
+					        	<%= link_to t("departmentokr.button.edit"), edit_departmentokr_path(department_okr) %>&nbsp;
+					        	<%= link_to t("departmentokr.button.destroy"), departmentokr_path(department_okr), method: :delete, data: { confirm: 'Are you sure?' } %>
 				        	<% end %>
 				        </td>
 				      </tr>
