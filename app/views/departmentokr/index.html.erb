@@ -64,7 +64,7 @@
 				  </tbody>
 				</table>
 			</br>
-			<%if @search_department_name != "ALL" && @total_proportion != 0 %>
+			<%if @search_department_name != t('departmentokr.display_range') && @total_proportion != 0 %>
 					<h3 align='center'><%= t("departmentokr.view_info.total_socre_html",total_score:@total_score,total_proportion:@total_proportion) %>
 						<% if @total_proportion != 1 %>
 							<font color='red'><%= t("departmentokr.view_info.proportion_error") %></font>
