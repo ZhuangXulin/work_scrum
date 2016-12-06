@@ -1,14 +1,12 @@
 <div class="tabs">
 	<div id="tab-1" class="tab">
 		<article>
-		<div class="text-section">
-			<h1><p id="notice"><%= notice %></p></h1>
-		</div>
+			<h1><%= display_notice_and_alert %></h1>
 			
 		<ul class="states" style="padding-bottom: 15px">
 			<%= form_tag '', :method => 'get' do %>
 			<p>
-				<%= select_tag "department_id", options_from_collection_for_select(@departments, 'id', 'department_name',@search_department_id) %>&nbsp;&nbsp;&nbsp;
+				<%= select_tag "department_id", options_from_collection_for_select(@departments, 'id', 'department_name',@search_department_id),style: "width:150px" %>&nbsp;&nbsp;&nbsp;
 				<%= submit_tag "Search", :department => nil %>
 			</p>
 			<% end %>
@@ -90,7 +88,6 @@
 			<%= will_paginate @users, :container => false %>
 				<br>
 				<% if @current_user_role == 'admin' || @current_user_role == 'manager' %>
-				<br /><br />
 				<%= link_to t("department.button.add_new_employee"), '/department/new' %>
 				<% end %>
 				<br>

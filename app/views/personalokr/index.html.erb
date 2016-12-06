@@ -1,15 +1,12 @@
 <div class="tabs">
 	<div id="tab-1" class="tab">
 		<article>
-			<!-- <div class="text-section">
-				<h1><p id="notice"><%= notice %></p></h1>
-			</div> -->
-			
+			<h1><%= display_notice_and_alert %></h1>
 		<ul class="states" style="padding-bottom: 15px">
 			<%= form_tag '', :method => 'get' do %>
 			<p>
-				<%= select_tag "okr_date", options_from_collection_for_select(@date_list, 'okr_date', 'okr_date',@search_okr_date) %>&nbsp;&nbsp;&nbsp;
-				<%= select_tag "user_id", options_from_collection_for_select(@users, 'id', 'email',@search_user_id) %>&nbsp;&nbsp;&nbsp;
+				<%= select_tag "okr_date", options_from_collection_for_select(@date_list, 'okr_date', 'okr_date',@search_okr_date),style: "width:150px" %>&nbsp;&nbsp;&nbsp;
+				<%= select_tag "user_id", options_from_collection_for_select(@users, 'id', 'email',@search_user_id),style: "width:200px" %>&nbsp;&nbsp;&nbsp;
 				<%= submit_tag "Search", :okr_date => nil %>
 			</p>
 			<% end %>
@@ -53,6 +50,7 @@
 					<% end %>
 				  </tbody>
 				</table>
+				<br />
 				<%if !@search_user_id.nil? && @total_proportion != 0 %>
 					<h3 align='center'><%= t("personalokr.view_info.total_socre_html",total_score:@total_score,total_proportion:@total_proportion) %>
 						<% if @total_proportion != 1 %>

@@ -63,11 +63,19 @@ en:
       active: "Active"
       edit: "Edit"
       add_new_employee: "Add New Employee"
+    notice_message:
+      create_successful: "Create department employee is successful."
+      update_successful: "Update department employee is successful."
+      destroy_successful: "Destroy department employee is successful."
+    alert_message:
+      create_unsuccessful: "Create department employee is unsuccessful."
+      update_unsuccessful: "Update department employee is unsuccessful."
+      destroy_unsuccessful: "Destroy department employee is unsuccessful."
   departmentokr:
     display_range: "All Departments"
     okr_list: "OKR List"
-    update_department_okr: "Update Department OKR"
-    create_department_okr: "Create Department OKR"
+    update_department_okr: "Update Department OKR (unable to update the OKR content of this month after 5 months of the month, but it can be evaluated)"
+    create_department_okr: "Create Department OKR (Cannot be created after the 5th of the month this month OKR)"
     can_not_update_message: "Data Can Not Update."
     list_menu:
       serial_number: "Serial Number"
@@ -104,10 +112,18 @@ en:
       edit: "Edit"
       destroy: "Destroy"
       back: "Back"
+    notice_message:
+      create_successful: "Create department OKR is successful."
+      update_successful: "Update department OKR is successful."
+      destroy_successful: "Destroy department OKR is successful."
+    alert_message:
+      create_unsuccessful: "Create department OKR is unsuccessful."
+      update_unsuccessful: "Update department OKR is unsuccessful."
+      destroy_unsuccessful: "Destroy department OKR is unsuccessful."
   personalokr:
     okr_list: "OKR List"
-    update_personal_okr: "Update Personal OKR"
-    create_personal_okr: "Create Personal OKR"
+    update_personal_okr: "Update Personal OKR (unable to update the OKR content of this month after 5 months of the month, but it can be evaluated)"
+    create_personal_okr: "Create Personal OKR (Cannot be created after the 5th of the month this month OKR)"
     can_not_update_message: "Data Can Not Update."
     list_menu:
       serial_number: "Serial Number"
@@ -144,11 +160,11 @@ en:
       edit: "Update"
       destroy: "destroy"
       back: "Back"
-  simple_captcha:
-    placeholder: "Enter the image value"
-    label: "Enter the code in the box"
-    refresh_button_text: "Refresh"
-    message:
-      default: "Secret Code did not match with the Image"
-      user: "The secret Image and code were different"
-      error: "Captcha code is wrong, try again."
+    notice_message:
+      create_successful: "Create personal OKR is successful."
+      update_successful: "Update personal OKR is successful."
+      destroy_successful: "Destroy personal OKR is successful."
+    alert_message:
+      create_unsuccessful: "Create personal OKR is unsuccessful."
+      update_unsuccessful: "Update personal OKR is unsuccessful."
+      destroy_unsuccessful: "Destroy personal OKR is unsuccessful."

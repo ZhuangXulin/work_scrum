@@ -1,21 +1,18 @@
 <div class="tabs">
 	<div id="tab-1" class="tab">
 		<article>
-			<!-- <div class="text-section">
-				<h1><p id="notice"><%= notice %></p></h1>
-			</div>
-			 -->
+			<h1><%= display_notice_and_alert %></h1>
 		<ul class="states" style="border-bottom: 15px">
 			<%= form_tag '', :method => 'get' do %>
 			<p>
-				<%= select_tag "okr_date", options_from_collection_for_select(@date_list, 'okr_date', 'okr_date',@search_okr_date) %>&nbsp;&nbsp;&nbsp;
-				<%= select_tag "department_id", options_from_collection_for_select(@departments, 'id', 'department_name',@search_department_id) %>&nbsp;&nbsp;&nbsp;
+				<%= select_tag "okr_date", options_from_collection_for_select(@date_list, 'okr_date', 'okr_date',@search_okr_date),style: "width:150px" %>&nbsp;&nbsp;&nbsp;
+				<%= select_tag "department_id", options_from_collection_for_select(@departments, 'id', 'department_name',@search_department_id),style: "width:150px" %>&nbsp;&nbsp;&nbsp;
 				<%= submit_tag "Search", :okr_date => nil %>
 			</p>
 			<% end %>
 		</ul>
 			<ul class="states" style="padding-top: 0">
-				<h1><font color='red'><%= @search_okr_date %></font><%= @search_department_name%>&nbsp;<%= t("departmentokr.okr_list") %></h1>
+				<h1><font color='red'><%= @search_okr_date %></font>&nbsp;<%= @search_department_name%>&nbsp;<%= t("departmentokr.okr_list") %></h1>
 				<table width="100%" cellspacing="0" cellpadding="0">
 				  <thead>
 				    <tr>

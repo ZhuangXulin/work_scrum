@@ -28,9 +28,9 @@
       <div class="change_box" >
             <a href="/department/edit/update" >修改密码</a>
             <% if @locale.nil? || @locale == "en" %>
-              <a href="welcome?locale=zh-CN" class="section">
+              <a href="/welcome?locale=zh-CN" class="section">
             <% else %>
-              <a href="welcome?locale=en" class="section">
+              <a href="/welcome?locale=en" class="section">
             <% end %>
             <% if @locale.nil? || @locale == "en" %>
             <strong class="name">设置中文语言</strong>

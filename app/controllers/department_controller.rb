@@ -52,9 +52,10 @@ class DepartmentController < ApplicationController
 		end
 		respond_to do |format|
         if result
-          	format.html { redirect_to '/department', notice: 'Department User was successfully created.' }
+          	format.html { redirect_to '/department', notice: t('department.notice_message.create_successful') }
         else
-          	format.html { render :new ,notice: 'Department User was unsuccessfully created.'}
+        	flash[:alert] = t('department.alert_message.create_unsuccessful')
+          	format.html { render :new }
         end
       end
 	end
@@ -71,9 +72,9 @@ class DepartmentController < ApplicationController
 
 		respond_to do |format|
 	        if result
-	          	format.html { redirect_to '/department', notice: 'Update User Active Status was successfully update.' }
+	          	format.html { redirect_to '/department', notice: t('department.notice_message.update_successful') }
 	        else
-	          	format.html { redirect_to "/department" ,notice: 'Update User Activce Status was unsuccessfully update.'}
+	          	format.html { redirect_to "/department" ,notice: t('department.alert_message.update_unsuccessful') }
 	        end
     	end
 	end
@@ -90,9 +91,9 @@ class DepartmentController < ApplicationController
 
 		respond_to do |format|
 	        if result
-	          	format.html { redirect_to '/department', notice: 'Update User Active Status was successfully update.' }
+	          	format.html { redirect_to '/department', notice: t('department.notice_message.update_successful') }
 	        else
-	          	format.html { redirect_to "/department" ,notice: 'Update User Activce Status was unsuccessfully update.'}
+	          	format.html { redirect_to "/department" ,notice: t('department.alert_message.update_unsuccessful')}
 	        end
     	end
 	end
@@ -149,10 +150,11 @@ class DepartmentController < ApplicationController
 		end
   		respond_to do |format|
   			if result
-	          	format.html { redirect_to '/department', notice: 'Department User was successfully updated.' }
+	          	format.html { redirect_to '/department', notice: t('department.notice_message.update_successful') }
 	    	else
     			@action = :update
-      			format.html { render action: "edit" ,notice: 'Department User was unsuccessfully updated.'}
+    			flash[:alert] = t('department.alert_message.update_unsuccessful')
+      			format.html { render action: "edit" }
     		end
     	end
 

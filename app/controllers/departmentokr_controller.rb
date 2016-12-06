@@ -61,13 +61,21 @@ class DepartmentokrController < ApplicationController
 
 	def create
 		Log.log_user_action(current_user.id,request.remote_ip,'Add Department OKR')
-		@department_okr = Departmentokr.create(:okr_name => department_okr_params[:okr_name],:okr_date => department_okr_params[:okr_date],:department_id => params[:department_id],:create_user_id => current_user.id)
+		result = false
+		if can_create_or_update?(department_okr_params[:okr_date])
+			@department_okr = Departmentokr.create(:okr_name => department_okr_params[:okr_name],:okr_date => department_okr_params[:okr_date],:department_id => params[:department_id],:create_user_id => current_user.id)
+			@department_okr.save
+			result = true
+		end
 		respond_to do |format|
-        if @department_okr.save
-          	format.html { redirect_to @department_okr, notice: 'Department OKR was successfully created.' }
+        if result
+          	format.html { redirect_to @department_okr, notice: t('departmentokr.notice_message.create_successful') }
         else
+        	@department_okr = Departmentokr.new
         	@date_list = BasicDate.get_date_list
-          	format.html { render :new ,notice: 'Department OKR was unsuccessfully created.'}
+        	@action = :create
+        	flash[:alert] = t('departmentokr.alert_message.create_unsuccessful')
+          	format.html { render :new }
         end
       end
 	end
@@ -101,7 +109,7 @@ class DepartmentokrController < ApplicationController
                                       :assessment_person => current_user.id,:okr_degree_of_difficulty => department_okr_params[:okr_degree_of_difficulty]
                                       )
   			elsif @current_user_role == "manager"
-  				if @department_okr.okr_score.nil?
+  				if can_create_or_update?(department_okr_params["okr_date"]) && @department_okr.okr_score.nil?
   					result = @department_okr.update_attributes(:okr_name => department_okr_params["okr_name"],
                                       :okr_date => department_okr_params["okr_date"]
                                       )
@@ -112,9 +120,9 @@ class DepartmentokrController < ApplicationController
   			end
 
     		if result
-          		format.html { redirect_to departmentokr_url, notice: 'Department OKR was successfully updated.' }
+          		format.html { redirect_to departmentokr_url, notice: t('departmentokr.notice_message.update_successful') }
     		else
-      			format.html { redirect_to departmentokr_url ,notice: 'Department OKR can not update after assessment.'}
+      			format.html { redirect_to departmentokr_url ,alert: t('departmentokr.alert_message.update_unsuccessful') }
     		end
     	end
   	end
@@ -122,9 +130,17 @@ class DepartmentokrController < ApplicationController
   	def destroy
   		Log.log_user_action(current_user.id,request.remote_ip,'Destrop Department OKR')
   		@department_okr = Departmentokr.find(params[:id])
-  		@department_okr.destroy
+  		result = false
+  		if can_create_or_update?(@department_okr.okr_date) || @current_user_role == "admin"
+  			@department_okr.destroy
+  			result = true
+  		end
   		respond_to do |format|
-    		format.html { redirect_to departmentokr_index_url }
+  			if result
+  				format.html { redirect_to departmentokr_index_url , notice: t('departmentokr.notice_message.destroy_successful') }
+  			else
+    			format.html { redirect_to departmentokr_index_url , alert: t('departmentokr.alert_message.destroy_successful') }
+    		end
   		end
 	end
 
@@ -137,6 +153,40 @@ class DepartmentokrController < ApplicationController
 	private
   	def department_okr_params
     	params.require(:departmentokr).permit(:id,:department_id,:okr_name,:okr_date,:okr_proportion,:okr_score,:okr_stats,:okr_degree_of_difficulty,:description)
+  	end
+
+  	#判断是否能够修改数据，每个月5号以后，本人无法修改上个月之前的数据（manager和admin可以修改）
+  	def can_create_or_update?(data_belong_date)
+  		current_year = Time.new.strftime("%Y").to_i
+  		current_month = Time.new.strftime("%m").to_i
+  		current_day = Time.new.strftime("%d").to_i
+  		data_belong_year = data_belong_date[0,4].to_i
+  		data_belong_month = data_belong_date[5,6].to_i
+  		if current_year == data_belong_year
+  			if current_month == data_belong_month
+  				if current_day > 30
+  					return false
+  				else
+  					return true
+  				end
+  			elsif current_month > data_belong_month
+  				return false
+  			else
+  				return true
+  			end
+  		elsif current_year < data_belong_year
+  			return true
+  		elsif current_year == data_belong_year + 1
+  			if data_belong_month != 12 && current_month != 1
+  				return false
+  			elsif current_day > 30
+  				return false
+  			else
+  				return true
+  			end
+  		else
+  			return false
+  		end
   	end
 
  end

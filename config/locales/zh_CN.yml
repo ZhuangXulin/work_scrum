@@ -63,11 +63,19 @@ zh-CN:
       active: "激活"
       edit: "编辑"
       add_new_employee: "新增雇员"
+    notice_message:
+      create_successful: "创建部门雇员成功."
+      update_successful: "更新部门雇员成功."
+      destroy_successful: "删除部门雇员成功."
+    alert_message:
+      create_unsuccessful: "创建部门雇员失败."
+      update_unsuccessful: "更新部门雇员失败."
+      destroy_unsuccessful: "删除部门雇员失败."
   departmentokr:
     display_range: "全部部门"
     okr_list: "OKR列表"
-    update_department_okr: "更新部门OKR内容"
-    create_department_okr: "创建部门OKR内容"
+    update_department_okr: "更新部门OKR内容(无法在当月5号以后更新本月的OKR内容，但是可以进行评定)"
+    create_department_okr: "创建部门OKR内容(无法在当月5号以后创建本月的OKR)"
     can_not_update_message: "数据将不会更新."
     list_menu:
       serial_number: "序号"
@@ -104,10 +112,18 @@ zh-CN:
       edit: "更新"
       destroy: "删除"
       back: "返回"
+    notice_message:
+      create_successful: "创建部门OKR成功."
+      update_successful: "更新部门OKR成功."
+      destroy_successful: "删除部门OKR成功."
+    alert_message:
+      create_unsuccessful: "创建部门OKR失败."
+      update_unsuccessful: "更新部门OKR失败."
+      destroy_unsuccessful: "删除部门OKR失败."
   personalokr:
     okr_list: "OKR列表"
-    update_personal_okr: "更新用户OKR内容"
-    create_personal_okr: "创建用户OKR内容"
+    update_personal_okr: "更新用户OKR内容(无法在当月5号以后更新本月的OKR内容，但是可以进行评定)"
+    create_personal_okr: "创建用户OKR内容(无法在当月5号以后创建本月的OKR)"
     can_not_update_message: "数据将不会更新."
     list_menu:
       serial_number: "序号"
@@ -144,11 +160,11 @@ zh-CN:
       edit: "更新"
       destroy: "删除"
       back: "返回"
-  simple_captcha:
-    placeholder: "输入图片中的内容"
-    label: "Enter the code in the box:"
-    refresh_button_text: "刷新"
-    message:
-      default: "Secret Code did not match with the Image"
-      user: "The secret Image and code were different"
-      error: "输入的验证码不正确, 请重新输入."
+    notice_message:
+      create_successful: "创建个人OKR成功."
+      update_successful: "更新个人OKR成功."
+      destroy_successful: "删除个人OKR成功."
+    alert_message:
+      create_unsuccessful: "创建个人OKR失败."
+      update_unsuccessful: "更新个人OKR失败."
+      destroy_unsuccessful: "删除个人OKR失败."
