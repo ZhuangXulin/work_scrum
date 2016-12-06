@@ -1,34 +1,28 @@
 <div class="tabs">
 	<div id="tab-1" class="tab">
 		<article>
-			<div class="text-section">
-				<h1><p id="notice"><%= notice %></p></h1>
-			</div>
-			
-		<ul class="states" >
+			<h1><%= display_notice_and_alert %></h1>
+		<ul class="states" style="border-bottom: 15px">
 			<%= form_tag '', :method => 'get' do %>
 			<p>
-				<%= select_tag "okr_date", options_from_collection_for_select(@date_list, 'okr_date', 'okr_date',@search_okr_date) %>&nbsp;&nbsp;&nbsp;
-				<%= select_tag "department_id", options_from_collection_for_select(@departments, 'id', 'department_name',@search_department_id) %>&nbsp;&nbsp;&nbsp;
+				<%= select_tag "okr_date", options_from_collection_for_select(@date_list, 'okr_date', 'okr_date',@search_okr_date),style: "width:150px" %>&nbsp;&nbsp;&nbsp;
+				<%= select_tag "department_id", options_from_collection_for_select(@departments, 'id', 'department_name',@search_department_id),style: "width:150px" %>&nbsp;&nbsp;&nbsp;
 				<%= submit_tag "Search", :okr_date => nil %>
 			</p>
 			<% end %>
 		</ul>
-			<ul class="states" >
-				<h1><font color='red'><%= @search_okr_date %></font><%= @search_department_name%>&nbsp;<%= t("departmentokr.okr_list") %></h1>
-				<table width="100%">
+			<ul class="states" style="padding-top: 0">
+				<h1><font color='red'><%= @search_okr_date %></font>&nbsp;<%= @search_department_name%>&nbsp;<%= t("departmentokr.okr_list") %></h1>
+				<table width="100%" cellspacing="0" cellpadding="0">
 				  <thead>
-				    <tr style="text-align: center; COLOR: #0076C8; BACKGROUND-COLOR: #F4FAFF; font-weight: bold">
-						<th width='3%'><%= t("departmentokr.list_menu.serial_number") %></th>
-						<th width="7%"><%= t("departmentokr.list_menu.department_name") %></th>
-						<th width='20%'><%= t("departmentokr.list_menu.okr_description") %></th>
-				      	<th witdh='10%'><%= t("departmentokr.list_menu.create_time") %></th>
-				      	<th width='10%'><%= t("departmentokr.list_menu.update_time") %></th>
-				      	<th width='5%'><%= t("departmentokr.list_menu.proportion") %></th>
-				      	<th width='5%'><%= t("departmentokr.list_menu.score") %></th>
-				      	<th width='10%'><%= t("departmentokr.list_menu.assessment_time") %></th>
-				      	<th width='10%'><%= t("departmentokr.list_menu.assessment_person") %></th>
-				      	<th width='15%' colspan="3"><%= t("departmentokr.list_menu.operate") %></th>
+				    <tr>
+						<th width="5%"><%= t("departmentokr.list_menu.serial_number") %></th>
+						<th width="10%"><%= t("departmentokr.list_menu.department_name") %></th>
+						<th width="50%"><%= t("departmentokr.list_menu.okr_description") %></th>
+				      	<th width="15%"><%= t("departmentokr.list_menu.update_time") %></th>
+				      	<th width="5%"><%= t("departmentokr.list_menu.proportion") %></th>
+				      	<th width="5%"><%= t("departmentokr.list_menu.score") %></th>
+				      	<th width="10%"><%= t("departmentokr.list_menu.operate") %></th>
 				    </tr>
 				  </thead>
 
@@ -41,21 +35,14 @@
 						<td align='center'><%= i+1 %></td>
 						<td align='center'><%= department_okr.department_name %></td>
 						<td align='center'><%= department_okr.okr_name %></td>
-				        <td align='center'><%= department_okr.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
 				        <td align='center'><%= department_okr.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
 						<td align='center'><%= department_okr.okr_proportion %></td>
 						<td align='center'><%= department_okr.okr_score %></td>
-						<td align='center'>
-							<% if !department_okr.assessment_time.nil? %>
-							<%= department_okr.assessment_time.strftime("%Y-%m-%d %H:%M:%S") %>
-							<% end %>
-						</td>
-						<td align='center'><%= department_okr.assessment_person_email %></td>
 				        <td align='center'>
 				        	<%= link_to t("departmentokr.button.show"), department_okr %>&nbsp;
 				        	<% if @current_user_role == 'admin' || @current_user_role == 'manager' %>
-				        	<%= link_to t("departmentokr.button.edit"), edit_departmentokr_path(department_okr) %>&nbsp;
-				        	<%= link_to t("departmentokr.button.destroy"), department_okr, method: :delete, data: { confirm: 'Are you sure?' } %>
+					        	<%= link_to t("departmentokr.button.edit"), edit_departmentokr_path(department_okr) %>&nbsp;
+					        	<%= link_to t("departmentokr.button.destroy"), departmentokr_path(department_okr), method: :delete, data: { confirm: 'Are you sure?' } %>
 				        	<% end %>
 				        </td>
 				      </tr>
@@ -64,7 +51,7 @@
 				  </tbody>
 				</table>
 			</br>
-			<%if @search_department_name != "ALL" && @total_proportion != 0 %>
+			<%if @search_department_name != t('departmentokr.display_range') && @total_proportion != 0 %>
 					<h3 align='center'><%= t("departmentokr.view_info.total_socre_html",total_score:@total_score,total_proportion:@total_proportion) %>
 						<% if @total_proportion != 1 %>
 							<font color='red'><%= t("departmentokr.view_info.proportion_error") %></font>

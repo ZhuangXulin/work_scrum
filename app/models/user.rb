@@ -32,28 +32,28 @@ class User < ActiveRecord::Base
 
   #获取全部的用户列表（不包括admin和manager）
   def self.get_all_users_without_admin_and_manager
-    sql = "select users.* from users,users_roles where users.id = users_roles.user_id and users_roles.role_id not in (1,2)"
+    sql = "select users.* from users,users_roles where users.id = users_roles.user_id and users_roles.role_id not in (1,2) order by email"
     User.find_by_sql(sql)
   end
 
   #获取某一个部门的用户列表
   def self.get_department_users(department_id)
-    sql = "select 'users'.* from 'users','department_users' where 'users'.'id' = 'department_users'.'user_id' and 'department_users'.'department_id' = '#{department_id}'"
+    sql = "select 'users'.* from 'users','department_users' where 'users'.'id' = 'department_users'.'user_id' and 'department_users'.'department_id' = '#{department_id}' order by 'users'.'email'"
     User.find_by_sql(sql)
   end
 
   #获取某一个部门的用户列表（不包括部门的管理员）
   def self.get_department_users_without_manager(department_id)
-    sql = "select 'users'.* from 'users','department_users','users_roles' where 'users'.'id' = 'department_users'.'user_id' and 'users_roles'.'user_id'='users'.'id' and 'users_roles'.'role_id' not in (1,2) and 'department_users'.'department_id' = '#{department_id}'"
+    sql = "select 'users'.* from 'users','department_users','users_roles' where 'users'.'id' = 'department_users'.'user_id' and 'users_roles'.'user_id'='users'.'id' and 'users_roles'.'role_id' not in (1,2) and 'department_users'.'department_id' = '#{department_id}' order by 'users'.'email' "
     User.find_by_sql(sql)
   end
 
   #获取某一个部门的用户列表，不包含管理员,根据访问用户权限
   def self.get_department_users_with_user_role(user_id,user_role,department_id)
     if user_role == "employee"
-      sql = "select 'users'.* from 'users','department_users','users_roles' where 'users'.'id' = 'department_users'.'user_id' and 'users'.'id'='users_roles'.'user_id' and 'users_roles'.'role_id' <> 2 and 'users'.'id' = '#{user_id}'"
+      sql = "select 'users'.* from 'users','department_users','users_roles' where 'users'.'id' = 'department_users'.'user_id' and 'users'.'id'='users_roles'.'user_id' and 'users_roles'.'role_id' <> 2 and 'users'.'id' = '#{user_id}' order by 'users'.'email'"
     elsif user_role == "admin" || user_role == "manager"
-      sql = "select 'users'.* from 'users','department_users','users_roles' where 'users'.'id' = 'department_users'.'user_id' and 'users'.'id'='users_roles'.'user_id' and 'users_roles'.'role_id' <> 2 and 'department_users'.'department_id' = '#{department_id}'"
+      sql = "select 'users'.* from 'users','department_users','users_roles' where 'users'.'id' = 'department_users'.'user_id' and 'users'.'id'='users_roles'.'user_id' and 'users_roles'.'role_id' <> 2 and 'department_users'.'department_id' = '#{department_id}' order by 'users'.'email'"
     end
     User.find_by_sql(sql)
   end

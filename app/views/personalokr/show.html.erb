@@ -1,62 +1,65 @@
 <div class="tabs">
 	<div id="tab-1" class="tab">
 		<article>
-			<div class="text-section">
-				<h1><p id="notice"><%= notice %></p></h1>
-			</div>
+			<h1><%= display_notice_and_alert %></h1>
 			
 		<ul class="states" >
 			<h1><%= t("personalokr.okr_detail_menu.okr_detail") %></h1>
-			<table border="0px" cellspacing="5px" cellpadding="5px">
+			<table width="100%" cellspacing="0" cellpadding="0">
 			  <tr>
-			      <td align="center" bgcolor="#F7F7F7" width="20%"><strong><%= t("personalokr.okr_detail_menu.personal_name") %></strong></td>
-			      <td width="80%"><%= @personal_okr.user_email %></td>
+			      <td><strong><font color="#0262a3"><%= t("personalokr.okr_detail_menu.personal_name") %>:</font></strong></td>
+			      <td width="80%" style="text-align:left"><%= @personal_okr.user_email %></td>
 			  </tr>
 			  <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("personalokr.okr_detail_menu.okr_time") %></strong></td>
-			      <td ><%= @personal_okr.okr_date %></td>
+			      <td><strong><font color="#0262a3"><%= t("personalokr.okr_detail_menu.okr_time") %>:</font></strong></td>
+			      <td style="text-align:left"><%= @personal_okr.okr_date %></td>
 			  </tr>
 				<tr>
-			    	<td align="center" bgcolor="#F7F7F7"><strong><%= t("personalokr.okr_detail_menu.okr_description") %></strong></td>
-			    	<td><%= @personal_okr.okr_name %></td>
+			    	<td><strong><font color="#0262a3"><%= t("personalokr.okr_detail_menu.okr_description") %>:</font></strong></td>
+			    	<td style="text-align:left"><%= @personal_okr.okr_name %></td>
 				</tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("personalokr.okr_detail_menu.okr_proportion") %></strong></td>
-			      <td><%= @personal_okr.okr_proportion %></td>
+			      <td><strong><font color="#0262a3"><%= t("personalokr.okr_detail_menu.okr_proportion") %>:</font></strong></td>
+			      <td style="text-align:left"><%= @personal_okr.okr_proportion %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("personalokr.okr_detail_menu.okr_status") %></strong></td>
-			      <td><%= @personal_okr.okr_stats_name %></td>
+			      <td><strong><font color="#0262a3"><%= t("personalokr.okr_detail_menu.okr_status") %>:</font></strong></td>
+			      <td style="text-align:left"><%= @personal_okr.okr_stats_name %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("personalokr.okr_detail_menu.okr_degree_of_difficulty") %></strong></td>
-			      <td><%= @personal_okr.okr_degree_of_difficulty_name %></td>
+			      <td><strong><font color="#0262a3"><%= t("personalokr.okr_detail_menu.okr_degree_of_difficulty") %>:</font></strong></td>
+			      <td style="text-align:left"><%= @personal_okr.okr_degree_of_difficulty_name %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("personalokr.okr_detail_menu.okr_score") %></strong></td>
-			      <td><%= @personal_okr.okr_score %></td>
+			      <td><strong><font color="#0262a3"><%= t("personalokr.okr_detail_menu.okr_score") %>:</font></strong></td>
+			      <td style="text-align:left"><%= @personal_okr.okr_score %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("personalokr.okr_detail_menu.assessment_person") %></strong></td>
-			      <td><%= @personal_okr.assessment_person_email %></td>
+			      <td><strong><font color="#0262a3"><%= t("personalokr.okr_detail_menu.assessment_person") %>:</font></strong></td>
+			      <td style="text-align:left"><%= @personal_okr.assessment_person_email %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("personalokr.okr_detail_menu.assessment_time") %></strong></td>
-			      <td><%= @personal_okr.assessment_time %></td>
+			      <td><strong><font color="#0262a3"><%= t("personalokr.okr_detail_menu.assessment_time") %>:</font></strong></td>
+			      <%if !@personal_okr.assessment_time.nil? %>
+			      	<td style="text-align:left"><%= @personal_okr.assessment_time.strftime("%Y-%m-%d %H:%M:%S")  %></td>
+			      <% else %>
+			      	<td style="text-align:left"><%= @personal_okr.assessment_time %></td>
+			      <% end%>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("personalokr.okr_detail_menu.description") %></strong></td>
-			      <td><%= @personal_okr.description %></td>
+			      <td><strong><font color="#0262a3"><%= t("personalokr.okr_detail_menu.description") %>:</font></strong></td>
+			      <td style="text-align:left"><%= @personal_okr.description %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("personalokr.okr_detail_menu.create_time") %></strong></td>
-			      <td> <%= @personal_okr.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+			      <td><strong><font color="#0262a3"><%= t("personalokr.okr_detail_menu.create_time") %>:</font></strong></td>
+			      <td style="text-align:left"> <%= @personal_okr.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
 			    </tr>
 			    <tr>
-			      <td align="center" bgcolor="#F7F7F7"><strong><%= t("personalokr.okr_detail_menu.update_time") %></strong></td>
-			      <td><%= @personal_okr.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+			      <td><strong><font color="#0262a3"><%= t("personalokr.okr_detail_menu.update_time") %>:</font></strong></td>
+			      <td style="text-align:left"><%= @personal_okr.updated_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
 			    </tr>
 			</table>
+			<br /><br />
 				<%= link_to t("personalokr.button.edit"), edit_personalokr_path(@personal_okr) %> |
 				<%= link_to t("personalokr.button.back"), '/personalokr' %>
 		</ul>

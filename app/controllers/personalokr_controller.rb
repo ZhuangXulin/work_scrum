@@ -9,6 +9,7 @@ class PersonalokrController < ApplicationController
 	before_action :get_roles
 
 	def index
+		Log.log_user_action(current_user.id,request.remote_ip,'View Personal OKR')
 		#基础日期列表
 		@date_list = BasicDate.get_date_list
 		#获取查询的日期
@@ -58,6 +59,7 @@ class PersonalokrController < ApplicationController
 	end
 
 	def new
+		Log.log_user_action(current_user.id,request.remote_ip,'Ready to Add Personal OKR')
 		@personal_okr = Personalokr.new
 		#OKR所属日期列表
 		@date_list = BasicDate.get_date_list
@@ -71,35 +73,45 @@ class PersonalokrController < ApplicationController
 	end
 
 	def create
-		@personal_okr = Personalokr.create(:okr_name => personal_okr_params[:okr_name],:okr_date => personal_okr_params[:okr_date],:user_id => current_user.id)
+		Log.log_user_action(current_user.id,request.remote_ip,'Add Personal OKR')
+		result = false
+		if can_create_or_update?(personal_okr_params[:okr_date])
+			@personal_okr = Personalokr.create(:okr_name => personal_okr_params[:okr_name],:okr_date => personal_okr_params[:okr_date],:user_id => current_user.id)
+			@personal_okr.save
+			result = true
+		end
+		
 		respond_to do |format|
-        if @personal_okr.save
-          	format.html { redirect_to @personal_okr, notice: 'Personal OKR was successfully created.' }
+        if result
+          	format.html { redirect_to @personal_okr, notice: t('personalokr.notice_message.create_successful')  }
         else
         	@date_list = BasicDate.get_date_list
-          	format.html { render :new ,notice: 'Personal OKR was unsuccessfully created.'}
+          	format.html { render :new ,notice: t('personalokr.alert_message.create_unsuccessful') }
         end
       end
 	end
 
 	def show
+		Log.log_user_action(current_user.id,request.remote_ip,'Show Personal OKR Info')
     	@personal_okr = Personalokr.get_personal_okr_info(params[:id])
 	end
 
 	#删除个人的okr（okr所有者，部门管理者，系统管理员操作）
 	def destroy
+		Log.log_user_action(current_user.id,request.remote_ip,'Destroy Personal OKR')
   		personal_okr = Personalokr.find(params[:id])
   		respond_to do |format|
-	  		if personal_okr.assessment_time.nil?
+	  		if can_create_or_update?(personal_okr_params["okr_date"]) && personal_okr.assessment_time.nil?
 	  			result = personal_okr.destroy
-	  			format.html { redirect_to personalokr_index_url, notice: 'Personal OKR was successfully destroy.' }
+	  			format.html { redirect_to personalokr_index_url, notice: t('personalokr.notice_message.destroy_successful') }
 	  		else
-    			format.html { redirect_to personalokr_index_url ,notice: 'Personal OKR can not destroy after assessment.'}
+    			format.html { redirect_to personalokr_index_url ,notice: t('personalokr.alert_message.destroy_unsuccessful') }
     		end
   		end
 	end
 
 	def edit
+		Log.log_user_action(current_user.id,request.remote_ip,'Ready to Update Personal OKR')
 		@personal_okr = Personalokr.find(params[:id])
 		#日期列表
 		@date_list = BasicDate.get_date_list
@@ -113,6 +125,7 @@ class PersonalokrController < ApplicationController
   	end
 
   	def update
+  		Log.log_user_action(current_user.id,request.remote_ip,'Update Personal OKR')
   		@personal_okr = Personalokr.find(params[:id])
   		respond_to do |format|
   			#部门管理员或者是系统管理员能够对OKR进行评定，雇员只能够修改自己的OKR内容
@@ -127,7 +140,7 @@ class PersonalokrController < ApplicationController
                                       :assessment_person => current_user.id,:okr_degree_of_difficulty => personal_okr_params[:okr_degree_of_difficulty]
                                       )
   			else
-  				if @personal_okr.okr_score.nil?
+  				if can_create_or_update?(personal_okr_params["okr_date"]) && @personal_okr.okr_score.nil?
   					result = @personal_okr.update_attributes(:okr_name => personal_okr_params["okr_name"],
                                       :okr_date => personal_okr_params["okr_date"]
                                       )
@@ -138,9 +151,9 @@ class PersonalokrController < ApplicationController
   			end
 
     		if result
-          		format.html { redirect_to personalokr_url, notice: 'Personal OKR was successfully updated.' }
+          		format.html { redirect_to personalokr_url, notice: t('personalokr.notice_message.update_successful')}
     		else
-      			format.html { redirect_to personalokr_url ,notice: 'Personal OKR can not update after assessment.'}
+      			format.html { redirect_to personalokr_url ,notice: t('personalokr.alert_message.update_unsuccessful') }
     		end
     	end
   	end
@@ -148,5 +161,39 @@ class PersonalokrController < ApplicationController
 	private
   	def personal_okr_params
     	params.require(:personalokr).permit(:id,:email,:okr_name,:okr_date,:okr_proportion,:okr_score,:okr_stats,:okr_degree_of_difficulty,:description)
+  	end
+
+  	#判断是否能够修改数据，每个月5号以后，本人无法修改上个月之前的数据（manager和admin可以修改）
+  	def can_create_or_update?(data_belong_date)
+  		current_year = Time.new.strftime("%Y").to_i
+  		current_month = Time.new.strftime("%m").to_i
+  		current_day = Time.new.strftime("%d").to_i
+  		data_belong_year = data_belong_date[0,4].to_i
+  		data_belong_month = data_belong_date[5,6].to_i
+  		if current_year == data_belong_year
+  			if current_month == data_belong_month
+  				if current_day > 30
+  					return false
+  				else
+  					return true
+  				end
+  			elsif current_month > data_belong_month
+  				return false
+  			else
+  				return true
+  			end
+  		elsif current_year < data_belong_year
+  			return true
+  		elsif current_year == data_belong_year + 1
+  			if data_belong_month != 12 && current_month != 1
+  				return false
+  			elsif current_day > 30
+  				return false
+  			else
+  				return true
+  			end
+  		else
+  			return false
+  		end
   	end
 end
