@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161123011831) do
+ActiveRecord::Schema.define(version: 20161128133622) do
 
   create_table "basic_dates", force: :cascade do |t|
     t.string   "okr_date",      null: false
@@ -57,6 +57,14 @@ ActiveRecord::Schema.define(version: 20161123011831) do
     t.datetime "updated_at",    null: false
   end
 
+  create_table "logs", force: :cascade do |t|
+    t.integer  "user_id",                     null: false
+    t.string   "user_ip",                     null: false
+    t.string   "type_of_action", default: "", null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
   create_table "okr_stats", force: :cascade do |t|
     t.string   "stats_name",    null: false
     t.float    "stats_number",  null: false
@@ -90,6 +98,15 @@ ActiveRecord::Schema.define(version: 20161123011831) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], name: "index_roles_on_name"
+
+  create_table "simple_captcha_data", force: :cascade do |t|
+    t.string   "key",        limit: 40
+    t.string   "value",      limit: 6
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "simple_captcha_data", ["key"], name: "idx_key"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",   null: false

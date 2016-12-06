@@ -8,8 +8,6 @@ Bundler.require(*Rails.groups)
 
 
 
-
-
 module WorkScrum
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -26,7 +24,7 @@ module WorkScrum
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
-    config.active_record.default_timezone = :local 
+    config.active_record.default_timezone = :local
     config.time_zone = 'Beijing'
   end
 end

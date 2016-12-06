@@ -10,38 +10,43 @@
       </ul>
     </div>
   <% end %>
-<table border="0px" cellspacing="5px" cellpadding="5px">
+<table border="0px" cellspacing="0" cellpadding="0">
+  <% if !@department_okr.okr_score.nil? %>
+    <tr>
+        <td colspan = '2'><font color="red"><%= t('departmentokr.can_not_update_message')%></font></td>
+    </tr>
+  <% end%>
   <tr>
-      <td align="center" bgcolor="#F7F7F7" width="20%"><strong><%= t("departmentokr.okr_detail_menu.department_name") %></strong></td>
-      <td width="80%"><%= select_tag "department_id", options_from_collection_for_select(@departments, 'id', 'department_name',@department_okr.department_id) %></td>
+      <td><strong><%= t("departmentokr.okr_detail_menu.department_name") %></strong></td>
+      <td ><%= select_tag "department_id", options_from_collection_for_select(@departments, 'id', 'department_name',@department_okr.department_id) %></td>
   </tr>
   <tr>
-      <td align="center" bgcolor="#F7F7F7"><strong><%= t("departmentokr.okr_detail_menu.okr_time") %></strong></td>
+      <td><strong><%= t("departmentokr.okr_detail_menu.okr_time") %></strong></td>
       <td ><%= f.select :okr_date, options_from_collection_for_select(@date_list, 'okr_date', 'okr_date',@department_okr.okr_date) %></td>
   </tr>
   <tr>
-      <td align="center" bgcolor="#F7F7F7"><strong><%= t("departmentokr.okr_detail_menu.okr_description") %></strong></td>
+      <td><strong><%= t("departmentokr.okr_detail_menu.okr_description") %></strong></td>
       <td><%= f.text_area :okr_name,cols: 98 ,rows: 10  %></td>
   </tr>
   <% if @current_user_role == "admin" %>
     <tr>
-      <td align="center" bgcolor="#F7F7F7"><strong><%= t("departmentokr.okr_detail_menu.okr_proportion") %></strong></td>
+      <td><strong><%= t("departmentokr.okr_detail_menu.okr_proportion") %></strong></td>
       <td><%= f.select :okr_proportion, options_for_select([["10%","0.1"],["20%","0.2"],["30%","0.3"],["40%","0.4"],["50%","0.5"],["60%","0.6"],["70%","0.7"],["80%","0.8"],["90%","0.9"],["100%","1"]],@department_okr.okr_proportion) %></td>
     </tr>
     <tr>
-      <td align="center" bgcolor="#F7F7F7"><strong><%= t("departmentokr.okr_detail_menu.okr_status") %></strong></td>
+      <td><strong><%= t("departmentokr.okr_detail_menu.okr_status") %></strong></td>
       <td><%= f.select :okr_stats, options_from_collection_for_select(@okr_stats, 'id', 'stats_name',@department_okr.okr_stats) %></td>
     </tr>
     <tr>
-      <td align="center" bgcolor="#F7F7F7"><strong><%= t("departmentokr.okr_detail_menu.okr_degree_of_difficulty") %></strong></td>
+      <td><strong><%= t("departmentokr.okr_detail_menu.okr_degree_of_difficulty") %></strong></td>
       <td><%= f.select :okr_degree_of_difficulty, options_from_collection_for_select(@degrees, 'id', 'degree_name',@department_okr.okr_degree_of_difficulty) %></td>
     </tr>
     <tr>
-      <td align="center" bgcolor="#F7F7F7"><strong><%= t("departmentokr.okr_detail_menu.okr_score") %></strong></td>
+      <td><strong><%= t("departmentokr.okr_detail_menu.okr_score") %></strong></td>
       <td><%= f.text_field :okr_score, size: 100,readonly: true %></td>
     </tr>
     <tr>
-      <td align="center" bgcolor="#F7F7F7"><strong><%= t("departmentokr.okr_detail_menu.description") %></strong></td>
+      <td><strong><%= t("departmentokr.okr_detail_menu.description") %></strong></td>
       <td><%= f.text_area :description,cols: 98 ,rows: 10 %></td>
     </tr>
   <% end %>

@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   around_filter :rescue_record_not_found
   around_filter :rescue_exception
   #国际化
-  before_action :set_locale
+  before_action :set_locale  
 
   def after_sign_in_path_for(resource)
 	   if resource.is_a?(User)

@@ -13,6 +13,7 @@ class DepartmentController < ApplicationController
 
 	#部门首页
 	def index
+		Log.log_user_action(current_user.id,request.remote_ip,'View Department Home')
 		#验证页面是否输入了department_id参数
 		@search_department_id = params[:department_id]
 		if !@search_department_id.nil?
@@ -30,12 +31,14 @@ class DepartmentController < ApplicationController
 
 	#新建用户
 	def new
+		Log.log_user_action(current_user.id,request.remote_ip,'Ready to Add Employee')
 		@user = User.new
     	@action = :create
 	end
 
 	#保存新建的用户
 	def create
+		Log.log_user_action(current_user.id,request.remote_ip,'Add New Employee')
 		result = false
         #新增雇员
         ActiveRecord::Base.transaction do
@@ -58,6 +61,7 @@ class DepartmentController < ApplicationController
 
 	#激活用户
 	def active
+		Log.log_user_action(current_user.id,request.remote_ip,'Active Employee')
 		result = false
 		#验证操作者是否是管理员
 		if @current_user_role == 'admin' || @current_user_role == 'manager'
@@ -76,6 +80,7 @@ class DepartmentController < ApplicationController
 
 	#锁定用户
 	def unactive
+		Log.log_user_action(current_user.id,request.remote_ip,'Unactive Employee')
 		result = false
 		#验证操作者是否是管理员
 		if @current_user_role == 'admin' || @current_user_role == 'manager'
@@ -94,6 +99,7 @@ class DepartmentController < ApplicationController
 
 	#准备编辑雇员信息
 	def edit
+		Log.log_user_action(current_user.id,request.remote_ip,'Ready to Update Employee')
 		user_id = params[:user_id]
 		if user_id.nil?
 			user_id = current_user.id
@@ -116,14 +122,23 @@ class DepartmentController < ApplicationController
 
   	#编辑雇员信息
   	def update
+  		Log.log_user_action(current_user.id,request.remote_ip,'Update Employee')
 		result = false
 		ActiveRecord::Base.transaction do
 			if params[:department_id].nil?
 				user = User.find(params[:user][:id])
-				user.update_attributes(:password => params[:user][:password])
+				if params[:user][:password].empty?
+					user.update_attributes(:email => params[:user][:email])
+				else
+					user.update_attributes(:email => params[:user][:email],:password => params[:user][:password])
+				end
 			else
 				user = User.find(params[:user][:id])
-				user.update_attributes(:password => params[:user][:password])
+				if params[:user][:password].empty?
+					user.update_attributes(:email => params[:user][:email])
+				else
+					user.update_attributes(:email => params[:user][:email],:password => params[:user][:password])
+				end
 				#更新人员所属部门
 				department_user = DepartmentUser.where(:user_id => params[:user][:id]).first
 				department_user.update_attributes(:department_id => params[:department_id])

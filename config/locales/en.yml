@@ -33,6 +33,7 @@ en:
     update_department_employee: "Update Department Employee"
     create_department_employee: "Add New Employee"
     update_person_password: "Update Person Password"
+    update_person_password_alarm_html: "If you do not enter password when update user info,<br >we will not change the original password"
     list_menu:
       serial_number: "Serial Number"
       employee_name: "Employee Name"
@@ -67,6 +68,7 @@ en:
     okr_list: "OKR List"
     update_department_okr: "Update Department OKR"
     create_department_okr: "Create Department OKR"
+    can_not_update_message: "Data Can Not Update."
     list_menu:
       serial_number: "Serial Number"
       department_name: "Department"
@@ -106,6 +108,7 @@ en:
     okr_list: "OKR List"
     update_personal_okr: "Update Personal OKR"
     create_personal_okr: "Create Personal OKR"
+    can_not_update_message: "Data Can Not Update."
     list_menu:
       serial_number: "Serial Number"
       personal_name: "Person Name"
@@ -141,3 +144,11 @@ en:
       edit: "Update"
       destroy: "destroy"
       back: "Back"
+  simple_captcha:
+    placeholder: "Enter the image value"
+    label: "Enter the code in the box"
+    refresh_button_text: "Refresh"
+    message:
+      default: "Secret Code did not match with the Image"
+      user: "The secret Image and code were different"
+      error: "Captcha code is wrong, try again."

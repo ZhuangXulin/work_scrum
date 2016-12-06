@@ -7,57 +7,74 @@
   <%= csrf_meta_tags %>
   <link media="all" rel="stylesheet" type="text/css" href="/css/all.css" />
   	<script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="/js/jquery-1.7.2.min.js"><\/script>');</script>
-  	<script type="text/javascript" src="/js/jquery.main.js"></script>
+  	<!-- <script type="text/javascript" src="/js/jquery.main.js"></script> -->
+    
 </head>
 <body>
-	<div id="wrapper">
-		<div id="content">
-			<div class="c1">
-				<div class="controls">
-					<nav class="links">
-						<ul>
-							<li><a href="/departmentokr" class="ico3"><%= t("menu.department_okr") %></a></li>
-						</ul>
-						<ul>
-							<li><a href="/personalokr" class="ico3"><%= t("menu.personal_okr") %></a></li>
-						</ul>
-						<ul>
-							<li><a href="/department" style="background:#99CC00 url(/images/sprite.png) no-repeat 13px -528px;"><%= t("menu.department") %></a></li>
-						</ul>
-						<ul>
-							<li><a href="/topemployee" class="ico3"><%= t("menu.top_employee") %></a></li>
-						</ul>
-						<ul>
-							<li><a href="/" class="ico1"><%= t("menu.help") %></a></li>
-						</ul>
-					</nav>
-					<div class="profile-box">
-						<span class="profile">
-							<% if @locale.nil? || @locale == "en" %>
-								<a href="welcome?locale=zh-CN" class="section">
-							<% else %>
-								<a href="welcome?locale=en" class="section">
-							<% end %>
-								<img class="image" src="/images/img1.png" alt="image description" width="26" height="26" />
-								<span class="text-box">
-									<% if @locale.nil? || @locale == "en" %>
-										<strong class="name">Welcome,设置中文语言</strong>
-									<% else %>
-										<strong class="name">Welcome,Change To English</strong>
-									<% end %>
-									<strong><%= current_user.email %></strong>
-								</span>
-							</a>
-							<a href="/department/edit/update" class="opener">opener</a>
-						</span>
-						 <%= link_to('Logout', destroy_user_session_path, :method => :delete,class: 'btn-on') %>     
-					</div>
-				</div>
-<%= yield %>
-
-			</div>
-		</div>
-		
+	<!--top-->
+  <div id="header" class="clearfix">
+      <a href="javascript:;" class="y-logo-title">Work Scrum</a>
+      <!-- <img src="/images/logo.png" alt="logo" class="y-logo"> -->
+      <div class="profile-box">
+		<span class="profile" style="position: relative">
+			
+				<img class="image" src="/images/img1.png" alt="image description" width="26" height="26" />
+				<span class="text-box">
+					<strong style="display: block; padding-top: 5px">welcome</strong>
+					<strong><%= current_user.email %></strong>
+				</span>
+			</a>
+			<a href="javascript:;" class="opener">opener</a>
+      <div class="change_box" >
+            <a href="/department/edit/update" >修改密码</a>
+            <% if @locale.nil? || @locale == "en" %>
+              <a href="welcome?locale=zh-CN" class="section">
+            <% else %>
+              <a href="welcome?locale=en" class="section">
+            <% end %>
+            <% if @locale.nil? || @locale == "en" %>
+            <strong class="name">设置中文语言</strong>
+          <% else %>
+            <strong class="name">Change To English</strong>
+          <% end %>
+      </div>
+		</span>
+		 <%= link_to('Logout', destroy_user_session_path,class: 'btn-on') %>     
 	</div>
+  </div>
+
+<!--left-->
+<div id="left">
+  <ul class="left-nav">
+    <li>
+      <a href="/departmentokr" ><em class="y-departmentdept"></em><%= t("menu.department_okr") %></a>
+    </li>
+    <li>
+      <a href="/personalokr"><em class="y-personal"></em><%= t("menu.personal_okr") %></a>
+    </li>
+    <li>
+      <a href="/department" class="current"><em class="y-personal"></em><%= t("menu.department") %></a>
+    </li>
+    <li>
+      <a href="/topemployee"><em class="y-personal"></em><%= t("menu.top_employee") %></a>
+    </li>
+    <li>
+      <a href="/" class="ico1"><em class="y-help"></em><%= t("menu.help") %></a>
+    </li>
+  </ul>
+</div>
+<!--subnav-->
+
+<div id="container">
+  <img src="/images/y-pic04.png" alt="" class="y-img-book">
+      <%= yield %>
+</div>
+
 </body>
+<script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
+   <script type="text/javascript">
+     $('.profile').on('click', function() {
+       $(this).children('.change_box').toggle('.change_box')
+     });
+   </script>
 </html>

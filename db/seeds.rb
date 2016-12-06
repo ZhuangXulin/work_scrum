@@ -17,12 +17,15 @@ Department.create(:id => 2,:department_name => "UED部")
 Department.create(:id => 3,:department_name => "测试部")
 Department.create(:id => 4,:department_name => "运维部")
 Department.create(:id => 5,:department_name => "基础平台部")
-Department.create(:id => 6,:department_name => "语音部")
+Department.create(:id => 6,:department_name => "语音技术部")
 Department.create(:id => 7,:department_name => "金融技术部")
-Department.create(:id => 8,:department_name => "项目部")
+Department.create(:id => 8,:department_name => "终端技术部")
+Department.create(:id => 9,:department_name => "公正邮技术部")
+Department.create(:id => 10,:department_name => "项目部")
 #创建管理员
 User.destroy_all
 User.create(:id => 1,:email => "zhuangxulin@ancun.com",:password => "zhuangxulin2003")
+User.create(:id => 2,:email => "admin@ancun.com",:password => "admin2016")
 #创建用户权限基础数据
 Role.destroy_all
 Role.create(:id => 1,:name => "admin")
@@ -31,9 +34,11 @@ Role.create(:id => 3,:name => "employee")
 #关联用户权限
 ActiveRecord::Base.connection.execute("delete from users_roles")
 ActiveRecord::Base.connection.execute("insert into users_roles(user_id,role_id) values(1,1)")
+ActiveRecord::Base.connection.execute("insert into users_roles(user_id,role_id) values(2,1)")
 #关联部门权限
 DepartmentUser.destroy_all
 DepartmentUser.create(:id => 1,:department_id => 0,:user_id => 1)
+DepartmentUser.create(:id => 2,:department_id => 0,:user_id => 2)
 #OKR执行情况基础数据
 OkrStat.create(:stats_name => '完全没有做到',:stats_number => 0,:serial_number => 1)
 OkrStat.create(:stats_name => '和目标差距较大',:stats_number => 0.3,:serial_number => 2)

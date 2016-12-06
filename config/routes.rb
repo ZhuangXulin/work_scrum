@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
+  #devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
 
   resources :departmentokr
   resources :personalokr
@@ -61,5 +62,5 @@ Rails.application.routes.draw do
   get ':controller(/:action(/:id))(.:format)'
   post ':controller(/:action(/:id))(.:format)'
 
-  match '*path', via: :all, to: 'welcome#error_404'
+  #match '*path', via: :all, to: 'public#404.html'
 end
